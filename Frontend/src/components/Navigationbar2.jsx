@@ -32,7 +32,7 @@ export default function Navigationbar2() {
       </div>
       <Nav defaultActiveKey="/home2" className="flex-column2 nav-menu">
         <ul className="menu-list">
-          <li className="nav-item">
+          <li className="nav-item01">
             <Link
               to="/stockmanager/Addquantity"
               className={`nav-link ${location.pathname === "/stockmanager/Addquantity" ? "active" : ""
@@ -41,7 +41,7 @@ export default function Navigationbar2() {
               <FontAwesomeIcon icon={faBoxOpen} /> Add items
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item01">
             <Link
               to="/stockmanager/Availability"
               className={`nav-link ${location.pathname === "/stockmanager/Availability" ? "active" : ""
@@ -50,7 +50,7 @@ export default function Navigationbar2() {
               <FontAwesomeIcon icon={faCalendarAlt} /> Availability
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item01">
             <Link
               to="/stockmanager/Shoporders"
               className={`nav-link ${location.pathname === "/stockmanager/Shoporders" ? "active" : ""
@@ -59,7 +59,7 @@ export default function Navigationbar2() {
               <FontAwesomeIcon icon={faShoppingCart} /> ShopOrders
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item01">
             <Link
               to="/stockmanager/Companyorders2"
               className={`nav-link ${location.pathname === "/stockmanager/Companyorders2" ? "active" : ""
@@ -68,7 +68,7 @@ export default function Navigationbar2() {
               <FontAwesomeIcon icon={faBuilding} /> CompanyOrders
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item01">
             <Link
               to="/stockmanager/Notification"
               className={`nav-link ${location.pathname === "/stockmanager/Notification" ? "active" : ""

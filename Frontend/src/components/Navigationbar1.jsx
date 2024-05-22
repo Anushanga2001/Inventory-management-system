@@ -32,7 +32,7 @@ export default function Navigationbar1() {
       </div>
       <Nav defaultActiveKey="/home1" className="flex-column1 nav-menu">
         <ul className="menu-list">
-          <li className="nav-item">
+          <li className="nav-item09">
             <Link
               to="/owner/Addusers"
               className={`nav-link ${location.pathname === "/owner/Addusers" ? "active" : ""
@@ -41,7 +41,7 @@ export default function Navigationbar1() {
               <FontAwesomeIcon icon={faUserPlus} /> Add users
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item09">
             <Link
               to="/owner/Availability"
               className={`nav-link ${location.pathname === "/owner/Availability" ? "active" : ""
@@ -50,7 +50,7 @@ export default function Navigationbar1() {
               <FontAwesomeIcon icon={faCalendarAlt} /> Availability
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item09">
             <Link
               to="/owner/Shoporders"
               className={`nav-link ${location.pathname === "/owner/Shoporders" ? "active" : ""
@@ -59,7 +59,7 @@ export default function Navigationbar1() {
               <FontAwesomeIcon icon={faShoppingCart} /> ShopOrders
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item09">
             <Link
               to="/owner/Companyorders"
               className={`nav-link ${location.pathname === "/owner/Companyorders" ? "active" : ""
@@ -68,7 +68,7 @@ export default function Navigationbar1() {
               <FontAwesomeIcon icon={faBuilding} /> CompanyOrders
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item09">
             <Link
               to="/owner/Reports"
               className={`nav-link ${location.pathname === "/owner/Reports" ? "active" : ""

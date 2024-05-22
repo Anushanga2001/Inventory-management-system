@@ -30,7 +30,7 @@
     text-align: center;
     font-size: large;
     padding-top: 70px;
-    line-height: 150px;
+    line-height: 50px;
     border-radius: 20px;
     border: #010101 solid 1px;
     /* to set image to the front rather than another class, we use this */
@@ -61,7 +61,7 @@
     font-size: 30px; /* Adjust the font size as needed */
   }
   
-  .image-at-bottom {
+  /* .image-at-bottom {
     position: absoblute;
     bottom: 0;
     left: 0; 
@@ -73,11 +73,18 @@
     opacity: 0.45;
     margin-top: -150px;
     z-index: 0;
-  }
+  } */
 
   .c3 {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 70px;
     margin-left: 10px;
   }
   
+  .nav-item{
+    margin-top: 100px;
+  }
+
+  .nav-item1{
+    margin-top: 50px;
+  }

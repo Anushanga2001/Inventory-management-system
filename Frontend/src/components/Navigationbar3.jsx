@@ -32,7 +32,7 @@ export default function Navigationbar3() {
       </div>
       <Nav defaultActiveKey="/home3" className="flex-column3 nav-menu">
         <ul className='menu-list'>
-          <li className="nav-item">
+          <li className="nav-item1">
             <Link
               to="/salesrep/Placeshoporders"
               className={`nav-link ${location.pathname === "/salesrep/Placeshoporders" ? "active" : ""

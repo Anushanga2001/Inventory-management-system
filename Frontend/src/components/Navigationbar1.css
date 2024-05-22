@@ -19,7 +19,7 @@
   justify-content: center;
   text-align: center;
   font-size: large;
-  line-height: 75px;
+  line-height: 50px;
   border-radius: 20px;
   border: rgb(1, 1, 1) solid 1px;
   /* to set image to the front rather than another class, we use this */
@@ -97,4 +97,8 @@
 
 .nav-link.active .fa-icon {
   color: rgb(0, 0, 0);
+}
+
+.nav-item09{
+  margin-top: 40px;
 }
