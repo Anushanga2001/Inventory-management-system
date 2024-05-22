@@ -1,0 +1,82 @@
+.Home {
+  height: 100%;
+  width: 100%;
+  /* contect add to page center */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.user-table {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
+
+.user-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.action-button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.action-button.edit {
+  background-color: #000000;
+  color: rgb(251, 213, 0);
+  text-align: center;
+  width: 90px;
+}
+
+.action-button.delete {
+  background-color: #000000; 
+  color: rgb(255, 255, 255);
+  text-align: center;
+  width: 90px;
+}
+
+
+.add{
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 3%;
+  color: rgb(251, 213, 0);
+  background-color: rgb(0, 0, 0);
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.fge1{
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: rgb(6, 6, 6);
+}

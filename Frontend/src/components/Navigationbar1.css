@@ -1,0 +1,100 @@
+/* when curser moving on the words, add color for that */
+/* .vertical-nav .nav-link:hover {
+  color: rgb(100, 50, 50) !important;
+} */
+.profile {
+  padding-top: 40px;
+  /* center the content */
+  text-align: center;
+  margin-left: 10px;
+  color: rgb(212, 215, 2);
+  font-size: 22px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.flex-column1 {
+  height: 570px;
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  justify-content: center;
+  text-align: center;
+  font-size: large;
+  line-height: 75px;
+  border-radius: 20px;
+  border: rgb(1, 1, 1) solid 1px;
+  /* to set image to the front rather than another class, we use this */
+  z-index: 1; 
+  position: relative;
+  background-color: #eeeeee1f;
+  width: 90%;
+  padding-top: 20px;
+}
+
+.flex-column1 .nav-link {
+  color: #ffffff !important; /* Set text color to black inside navigationbar*/
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.custom-button1 {
+  color: rgb(212, 215, 2) !important; /* Set text color to black */
+  background-color: transparent !important; /* Remove background color */
+  border: none !important; /* Remove border */
+  /* to set the image to the front rather than another class, we use this */
+  z-index: 1; 
+  position: relative;
+}
+
+.cc1{
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+/* .custom-button1:hover {
+  color: #643232 !important;
+} */
+
+.custom-button1 b {
+  font-size: 30px; /* Adjust the font size as needed */
+}
+
+.image-at-bottom1 {
+  position: absoblute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background-image: url('C:\Users\Anushanga\Downloads\happy\Inventory_System-main-main\Frontend\src\assets\biscuitcompany.png'); 
+  background-size: cover; 
+  background-position: center; 
+  opacity: 0.45;
+  margin-top: -150px;
+  z-index: 0;
+}
+
+.profile-link01{
+  color: #fafafa;
+}
+
+.menu-list {
+  list-style: none; /* Remove bullets */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.menu-list li {
+  margin-bottom: 10px; /* Adjust as needed for spacing between list items */
+}
+
+.nav-link.active {
+  background-color: rgba(0, 0, 0, 0.292) ;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.nav-link.active .fa-icon {
+  color: rgb(0, 0, 0);
+}

@@ -1,0 +1,79 @@
+/* styles.css */
+.register {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    padding-bottom: 35px;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(163, 160, 157, 0.778);
+}
+.form-heading {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 60px;
+    margin-bottom: 30px;
+    margin-top: 5px;;
+    text-align: center;
+  }
+
+.user-form{
+  width: 600px;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  border: 1px solid #000000;
+  padding: 30px;
+  background-color: #5858583f;
+  border-radius: 30px;
+}
+  
+  .create-form label {
+    display: block;
+  }
+  
+  .create-form {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    padding-top: 50px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+  
+  .create-form input {
+   margin-left: 10px;
+   padding: 5px;
+  }
+  .create-form select {
+    margin-left: 10px;
+  }
+  .create-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  .create-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 200px;
+    margin-left: 170px;
+  }
+  
+  .create-form button:hover {
+    background-color: #45a049;
+  }

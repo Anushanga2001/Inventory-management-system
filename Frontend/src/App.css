@@ -1,0 +1,15 @@
+.app-container {
+  display: flex;
+}
+
+.navigation-container1 {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  width:fit-content; /* Adjust as needed */
+}
+
+.content30 {
+  width:100%;
+  height: 100vh;
+}

@@ -1,0 +1,95 @@
+.head {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: x-large;
+  font-weight: bold;
+  background-color: #615f470f;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.btn01 {
+  width: 100%;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-top: -40px;
+  gap: 10px;
+}
+
+.btn01 Button {
+  margin-right: 10px;
+  /* Adjust this value to control the space between buttons */
+}
+
+.content01 {
+  display: flex;
+  height: 1500px;
+  flex-direction: column;
+  /* Change to row to display items horizontally */
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  /* control the space between 2 lines */
+  text-align: center;
+  line-height: 20px;
+  border-radius: 20px;
+  border: #010101 solid 2px;
+  /* to set image to the front rather than another class, we use this */
+  z-index: 1;
+  position: relative;
+  background-color: #615f474e;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.Additems {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff4c;
+  height: 100vh;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.h01 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.input01 {
+  padding: 10px;
+  border: 1px solid rgb(10, 168, 120);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  margin-left: 30px;
+  text-align: left;
+}
+
+.topic002 {
+  margin-top: 70px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: rgb(124, 141, 2);
+}
+
+.lab2 {
+  display: flex;
+  width: 100%;	
+  white-space: nowrap;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 30px;
+}

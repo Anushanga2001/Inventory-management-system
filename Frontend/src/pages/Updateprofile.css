@@ -1,0 +1,36 @@
+.Updateprofile {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        background-color: rgba(104, 106, 99, 0.281);
+        border-radius: 30px;
+        
+}
+
+.formedit{
+  width: 600px;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  border: 1px solid #000000;
+  padding: 30px;
+  background-color: #5858583f;
+  border-radius: 30px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.h00{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 60px;
+    margin-bottom: 60px;
+}
+
+.tt{
+  position: fixed;
+  left: 0;
+  top: 0;
+}

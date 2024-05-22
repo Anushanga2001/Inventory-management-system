@@ -1,0 +1,82 @@
+.Placeshoporders {
+    height: 100%;
+    width: 100%;
+    /* contect add to page center */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+  }
+  .search010 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 2%;
+    margin-right: 5%;
+  }
+
+.content2 {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to new lines */
+    margin-top: 50px;
+    /* height control using scroller view */
+    overflow-y: auto;
+    height: 630px;
+    width: 100%;
+    padding: 10px;    
+}
+
+.item {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 20px;
+    margin-bottom: 20px;  
+    text-align: center;
+    align-items: center;
+    border: 2px solid rgb(181, 188, 0);
+    justify-content: center;
+    width: 230px;
+    height: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    /* line space */
+    line-height: 2.0;
+}
+
+.image1 img {
+    width: 150px; /* Set the width of the image */
+    height: 150px; /* Set the height of the image */
+}
+
+.bottom1 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 5%;
+    margin-bottom: 20px;
+}
+
+.topic {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 300px;
+    margin-top: 2%;
+    width: 300px;
+}
+
+.common10{
+    display: flex;
+    justify-content: space-between;
+        /* To push components to opposite ends */
+    margin-bottom: 4%;
+}
+
+.no1 {
+    width: 90px;
+    height: 30px;
+}
+

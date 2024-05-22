@@ -1,0 +1,114 @@
+.head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.btn02 {
+    margin-top: 5px;
+    margin-top: 0px;
+}
+
+.btn1 {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    background-color: #0000003f;
+    font-weight: bold;
+    color: #000000;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.btn1:hover {
+    color: rgba(84, 66, 0, 0.589);
+  }
+
+.btn2:hover {
+    color: rgba(84, 66, 0, 0.589); 
+  }
+
+.btn2 {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    background-color: #0000003f;
+    color: #000000;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.content002 {
+    display: flex;
+    height: 1500px;
+    flex-direction: column;
+    /* Change to row to display items horizontally */
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    /* control the space between 2 lines */
+    text-align: center;
+    line-height: 20px;
+    border-radius: 20px;
+    border: #000000 solid 2px;
+    /* to set image to the front rather than another class, we use this */
+    z-index: 1;
+    position: relative;
+    background-color: #615f474e;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.Additems {
+    height: 100vh;
+}
+
+.topic003 {
+    margin-top: 70px;
+    margin-bottom: 10px;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(124, 141, 2) ;
+}
+
+.input01 {
+    width: 100%;
+}
+
+.lab1 {
+    display: flex;
+    width: 100%;	
+    white-space: nowrap;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 30px;
+}
+
+.btn21 {
+    text-align: center; /* Center-align the buttons */
+    margin-top: -50px;
+  }
+  
+  .btn21 Button {
+    margin-right: 10px; /* Add margin-right to create space between the buttons */
+  }
+
+
+.lab10{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;	
+    white-space: nowrap;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 30px;
+}
+  

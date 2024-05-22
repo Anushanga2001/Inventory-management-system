@@ -1,0 +1,38 @@
+.Companyorders2 {
+    height: 100%;
+    width: 100%;
+    /* contect add to page center */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    padding: 50px;
+  }
+.tale004 {
+    margin-top: 70px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tale004 th, .tale004 td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .tale004 th {
+    background-color: #f2f2f2;
+  }
+  
+  .tale004 tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  .de{
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+    height: 1000px;
+    overflow-y: auto;
+  }
+

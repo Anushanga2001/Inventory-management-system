@@ -1,0 +1,62 @@
+.Placecompanyorders01 {
+    height: 100%;
+    width: 100%;
+    /* contect add to page center */
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    padding: 50px;
+  }
+.search011 {
+   position: fixed;
+   top: 0;
+   right: 0;
+   margin-top: 2%;
+   margin-right: 3%;
+}
+
+.content02 {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to new lines */
+    margin-top: 50px;
+    /* height control using scroller view */
+    overflow-y: auto;
+    height: 750px;
+    width: 100%;
+}
+
+.item7 {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;  
+    text-align: center;
+    border: 1px solid black;
+    justify-content: center;
+    width: 270px;
+    height: 350px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #5858583f;
+    border: 2px solid rgb(176, 179, 1);
+}
+
+.image3 img {
+    width: 90%; /* Set the width of the image */
+    height: 90%; /* Set the height of the image */
+}
+
+.bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 1%;
+    margin-right: 3%;
+}
+
+.button-spacing {
+    margin-right: 10px;
+  }
