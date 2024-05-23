@@ -28,10 +28,11 @@ function ShopOrders() {
       return;
     }
 
-    // according to the orderNo and shopName searching happen
+    // Enable searching by orderNo, shopName, and orderDate
     const filtered = orders.filter((order) =>
       order.orderNo.toString().includes(searchTerm)
       || order.shopName.toLowerCase().includes(searchTerm.toLowerCase())
+      || order.orderDate.substring(0, 10).includes(searchTerm)
     );
     setFilteredOrders(filtered);
   }, [searchTerm, orders]);
@@ -54,6 +55,7 @@ function ShopOrders() {
           <thead>
             <tr>
               <th>OrderNo</th>
+              <th>Order Date</th> {/* Modify table header */}
               <th>Shop Name</th>
               <th>Address</th>
             </tr>
@@ -62,6 +64,7 @@ function ShopOrders() {
             {filteredOrders.map((order, index) => (
                     <tr key={index} >
                       <td><Link to={`/salesrep/${order.orderNo}`}>{order.orderNo}</Link></td>
+                      <td>{order.orderDate.substring(0, 10)}</td> {/* Modify orderDate display */}
                       <td>{order.shopName}</td>
                       <td>{order.address}</td>
                     </tr>

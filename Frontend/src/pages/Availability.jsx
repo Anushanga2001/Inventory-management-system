@@ -101,7 +101,7 @@ export default function Availability() {
                   <button
                   style={{ marginTop: '0px' }}
                     type="button"
-                    className="btn btn-danger btn-sm"
+                    className="action-button-delete1"
                     onClick={() => handleDelete(item.itemNo, item.batchNo)}
                   >
                     Delete

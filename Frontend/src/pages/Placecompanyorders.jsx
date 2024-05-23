@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./Placecompanyorders.css"
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 export default function Placecompanyorders() {
   const [items, setItems] = useState([]);
@@ -49,7 +50,7 @@ export default function Placecompanyorders() {
     const hasItems = items.some(item => item.quantity > 0);
 
     if (!hasItems) {
-      alert("Please add at least one item to the order.");
+      toast.error("Please add at least one item to the order.");
       return;
     }
 
@@ -67,10 +68,16 @@ export default function Placecompanyorders() {
         orderItems
       });
 
-      console.log("Order placed successfully:", response.data);
-      window.location.reload();
+      toast.success("Order placed successfully.");
+
+      // Reset the form
+      const clearedItems = items.map(item => ({ ...item, quantity: '' }));
+      setItems(clearedItems);
+      setOrderDate('');
+      setOrderTime('');
     } catch (error) {
-      console.error("Error placing order:", error);
+      toast.error("Failed to place the order.");
+      console.error(error);
     }
   };
 

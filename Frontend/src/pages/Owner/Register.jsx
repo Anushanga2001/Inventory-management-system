@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Register.css';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -25,16 +26,35 @@ export default function Register() {
       console.log('User added successfully');
       setFormData({
         firstName: '',
-        lastName: '', // Clear lastName field
+        lastName: '',
         userName: '',
         password: '',
         dob: '',
         jobPosition: ''
       });
 
-      alert('User added successfully');
+      toast.success('User added successfully', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.error('Error adding user:', error);
+      toast.error('Error adding user', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

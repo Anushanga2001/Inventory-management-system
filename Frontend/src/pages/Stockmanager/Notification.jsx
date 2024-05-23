@@ -5,52 +5,49 @@ import { Table } from 'react-bootstrap';
 
 export default function Notification() {
   const [items, setItems] = useState([]);
+  const [notificationsDeleted, setNotificationsDeleted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/get_itemszz");
-        console.log(response.data);
-  
-        const data = response.data;
-        const newNotifications = [];
-  
-        for (const item of data) {
-          // Check if the notification already exists in the database
-          const existingNotification = items.find(
-            (notification) =>
-              notification.itemNo === item.itemNo &&
-              notification.batchNo === item.batchNo &&
-              notification.statusMessage === item.statusMessage
-          );
-  
-          if (!existingNotification) {
-            // Add the notification to the database
-            const notificationResponse = await axios.post(
-              "http://localhost:5000/add_notificationss",
-              item
-            );
-            console.log(item);
-  
-            // Add the notification to the newNotifications array
-            newNotifications.push(notificationResponse.data);
+        const response = await axios.get("http://localhost:5000/get_item040");
+
+        // Add the message to each item based on the quantity and expiry date
+        const itemsWithMessage = response.data.map(item => {
+          let message = '';
+          if (item.quantity < 10) {
+            message = 'less stock';
+          } else {
+            message = 'expire date is close';
           }
-        }
-  
-        // Update the items state with the new notifications
-        setItems((prevItems) => [...prevItems, ...newNotifications]);
-  
-        // Fetch the notifications from the database
-        const data1 = await axios.get("http://localhost:5000/get_notifications");
-        setItems(data1.data);
-  
+          return { ...item, message };
+        });
+
+        setItems(itemsWithMessage);
+
+        // Make a POST request to the server to add the items to another table
+        await axios.post(`http://localhost:5000/add_notifications`, response.data);
+        console.log(response.data);
+
       } catch (error) {
         console.error(error);
       }
     };
-  
-    fetchData();
-  }, []);  
+
+    if (!notificationsDeleted) {
+      fetchData();
+    }
+  }, [notificationsDeleted]);
+
+  const handleDelete = async (itemNo, batchNo) => {
+    try {
+      await axios.delete(`http://localhost:5000/delete_notification/${itemNo}/${batchNo}`);
+      setItems(items.filter(item => item.itemNo !== itemNo || item.batchNo !== batchNo));
+      setNotificationsDeleted(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className='Notification'>
@@ -65,18 +62,24 @@ export default function Notification() {
               <th>Item No</th>
               <th>Batch No</th>
               <th>Item Name</th>
-              <th>Status</th>
+              <th>Message</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
               {items.map((item, index) => {
-                const { itemNo, batchNo, itemName, statusMessage } = item;
+                const { itemNo, batchNo, itemName } = item;
                 return (
                   <tr key={index}>
                     <td>{itemNo}</td>
                     <td>{batchNo}</td>
                     <td>{itemName}</td>
-                    <td>{statusMessage}</td>
+                    <td>{item.message}</td>
+                    <td>
+                      <button className="action-button-delete1" onClick={() => handleDelete(itemNo, batchNo)} style={{marginTop: '0px'}}>
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 );
               })}

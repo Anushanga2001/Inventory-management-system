@@ -145,20 +145,17 @@ exports.getsItems = (req, res) => {
   });
 };
 
-// declare another function to retrieve items from the database when the expire date is less than 7 days
-exports.getItemszz = (req, res) => {
-  const sql = 'SELECT itemNo, itemName, batchNo, expireDate, quantity FROM items01 WHERE (expireDate <= DATE_ADD(CURDATE(), INTERVAL 7 DAY) AND quantity > 0) OR (quantity < 10 AND quantity > 0)';
-  // const sql = 'SELECT itemNo, itemName, batchNo FROM items01 GROUP BY itemNo';
+exports.getItem040 = (req, res) => {
+  const sql = 'SELECT itemNo, batchNo, itemName, expireDate, quantity FROM items01 WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)) OR (quantity < 10)';
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error fetching items:', err);
       res.status(500).json({ error: 'Error fetching items' });
       return;
     }
-    // Send the result back to the client
-    const x = result;
-    res.status(200).json(result);
+    res.json(result);
   });
 };
+
 
 

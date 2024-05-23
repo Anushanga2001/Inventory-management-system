@@ -29,3 +29,11 @@
     overflow-y: auto;
     width: 100%;
 }
+
+.action-button-delete1{
+    background-color: #000000; 
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 90px;
+    border-radius: 5px;
+}

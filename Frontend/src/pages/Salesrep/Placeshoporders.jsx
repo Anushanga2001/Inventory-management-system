@@ -56,37 +56,39 @@ export default function Placeshoporders() {
 
   const handleConfirmClick = async () => {
     const orderItems = items.filter((item) => item.enterquantity > 0);
-
+  
     if (orderItems.length === 0) {
       alert('Please enter quantity for at least one item.');
       return;
     }
-
+  
     const orderItemsMapped = orderItems.map((item) => ({
       itemNo: item.itemNo,
       itemName: item.itemName,
       unitPrice: item.unitPrice,
       enterquantity: Math.min(item.quantity, item.enterquantity), // Use the minimum of the exist quantity and the enter quantity
     }));
-
+  
     const order = {
       shopName,
       address,
+      orderDate: new Date().toISOString().slice(0, 10), // Include the current date
       items: orderItemsMapped,
     };
-
+  
     try {
       const response = await axios.post('http://localhost:5000/add_shoporders', order);
-        console.log(response.data);
+      console.log(response.data);
       // Reset the form fields and state variables
       setShopName('');
       setAddress('');
       setOrderItems([]);
+      alert('Order placed successfully');
       window.location.reload();
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-  };
+  };  
 
   return (
     <div className="Placeshoporders">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
 
 // Layout component
 import Owner from './Owner';
@@ -46,6 +47,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
+      <ToastContainer />
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/Edit" element={<Edit />} />

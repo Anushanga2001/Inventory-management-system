@@ -26,7 +26,7 @@ router.get('/get_itemss', usersController2.getItems01);
 router.get('/gets_item/:itemName', usersController2.getsItems);
 router.get('/get_items/:ItemNo', usersController2.getItem)
 router.get('/get_items', usersController2.getItems90);
-router.get('/get_itemszz', usersController2.getItemszz);
+router.get('/get_item040', usersController2.getItem040);
 router.delete('/delete_items/:itemNo/:batchNo', usersController2.deleteItem);
 
 router.post('/add_companyorders', usersController3.addCompanyOrders);
@@ -39,6 +39,6 @@ router.get('/get_shoporders/:orderNo', usersController5.getshopOrderByOrderNo)
 router.get('/get_shoporder_details/:orderNo', usersController5.getshopOrdersByOrderNo)
 
 router.get('/display_items', usersController4.getdisplay)
-router.post('/add_notificationss', usersController6.addnotifications)
-router.get('/get_notifications', usersController6.getnotifications)
+router.post('/add_notifications', usersController6.addnotifications)
+router.delete('/delete_notification/:itemNo/:batchNo', usersController6.deletenotifications)
 module.exports = router;
