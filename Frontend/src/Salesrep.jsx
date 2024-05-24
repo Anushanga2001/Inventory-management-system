@@ -5,7 +5,7 @@ import './All.css'
 
 export default function Salesrep() {
   return (
-    <div className='all'>
+    <div className='all' style={{overflow: 'hidden'}}>
         <div className='navigation-container10'>
             <Navigationbar3 />
         </div>

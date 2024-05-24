@@ -4,11 +4,11 @@ import Navigationbar2 from './components/Navigationbar2'
 
 export default function Stockmanager() {
   return (
-    <div className='all'>
+    <div className='all' style={{overflow: 'hidden'}}>
         <div className='navigation-container10'>
             <Navigationbar2 />
         </div>
-        <div className='content30' style={{overflow: 'hidden'}}>
+        <div className='content30'>
         <Outlet/>
         </div>
     </div>
