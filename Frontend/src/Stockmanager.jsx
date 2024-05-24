@@ -8,7 +8,7 @@ export default function Stockmanager() {
         <div className='navigation-container10'>
             <Navigationbar2 />
         </div>
-        <div className='content30'>
+        <div className='content30' style={{overflow: 'hidden'}}>
         <Outlet/>
         </div>
     </div>

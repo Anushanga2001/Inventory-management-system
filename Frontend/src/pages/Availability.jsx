@@ -79,7 +79,7 @@ export default function Availability() {
         <Table striped bordered hover className='c1'>
           <thead>
             <tr>
-              <th>Item ID</th>
+              <th>Item No</th>
               <th>Batch No</th>
               <th>Item Name</th>
               <th>Unit Price</th>

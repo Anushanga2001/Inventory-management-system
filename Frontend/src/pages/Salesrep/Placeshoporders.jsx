@@ -49,6 +49,28 @@ export default function Placeshoporders() {
         ...updatedItems[itemIndex],
         enterquantity: parseInt(enterquantity)
       };
+  
+      // Check if there are any earlier batch numbers with non-zero quantity
+      const earlierBatchNumbers = items.filter((item) =>
+        item.itemNo === itemNo && item.batchNo < batchNo && item.quantity > 0
+      );
+  
+      // If there are earlier batch numbers with non-zero quantity, check if their entered quantity is less than or equal to their existing quantity
+      const isValidQuantity = earlierBatchNumbers.every((item) =>
+        item.enterquantity = item.quantity
+      );
+  
+      if (!isValidQuantity) {
+        alert(`Please enter valid quantities for earlier batch numbers before entering quantity for batch number ${batchNo}`);
+        return;
+      }
+  
+      // Check if the entered quantity for the current batch number is less than or equal to its existing quantity
+      if (updatedItems[itemIndex].enterquantity > updatedItems[itemIndex].quantity) {
+        alert(`The entered quantity for batch number ${batchNo} is greater than its existing quantity`);
+        return;
+      }
+  
       setItems(updatedItems);
       setOrderItems(updatedItems);
     }
@@ -59,6 +81,12 @@ export default function Placeshoporders() {
   
     if (orderItems.length === 0) {
       alert('Please enter quantity for at least one item.');
+      return;
+    }
+  
+    // Check if shop name and address are filled in
+    if (!shopName || !address) {
+      alert('Please fill in the shop name and address before placing the order.');
       return;
     }
   
@@ -109,8 +137,7 @@ export default function Placeshoporders() {
           <div className='item' key={item.itemNo && item.batchNo}>
             <h5>{item.itemName}</h5>
             <div className='image1'>
-                <img
-                  src={"http://localhost:5000/uploads/" + item.itemImage} alt='image'
+                <img src={"http://localhost:5000/uploads/" + item.itemImage} alt='image'
                 />
             </div>
             <label>Unit Price : <b>{item.unitPrice}</b></label>

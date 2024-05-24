@@ -54,35 +54,45 @@ exports.deleteItem = (req, res) => {
 
 // this function for adding exist items to the system
 exports.addItem00 = (req, res) => {
-  const { itemNo, itemName, unitPrice, quantity, expireDate } = req.body;
-
-  // SQL query to get the current highest batchNo for the given itemNo
-  const getMaxBatchNoSql = 'SELECT MAX(batchNo) AS maxBatchNo FROM items01 WHERE itemNo = ?';
-
-  db.query(getMaxBatchNoSql, [itemNo], (err, results) => {
+  upload.single('itemImage')(req, res, (err) => {
     if (err) {
-      console.error('Error fetching max batchNo:', err);
-      res.status(500).json({ error: 'Error fetching max batchNo' });
+      console.error('Error uploading image:', err);
+      res.status(500).json({ error: 'Error uploading image' });
       return;
     }
 
-    // Determine the new batchNo
-    const maxBatchNo = results[0].maxBatchNo;
-    const newBatchNo = maxBatchNo ? maxBatchNo + 1 : 1;
+    const { itemNo, itemName, unitPrice, quantity, expireDate } = req.body;
+    const itemImage = req.file ? req.file.filename : ''; // Set itemImage to an empty string if no file is uploaded
 
-    // SQL query to insert the new item with the incremented batchNo
-    const insertItemSql = 'INSERT INTO items01 (itemNo, itemName, unitPrice, quantity, expireDate, batchNo) VALUES (?, ?, ?, ?, ?, ?)';
+    // SQL query to get the current highest batchNo for the given itemNo
+    const getMaxBatchNoSql = 'SELECT MAX(batchNo) AS maxBatchNo FROM items01 WHERE itemNo = ?';
 
-    db.query(insertItemSql, [itemNo, itemName, unitPrice, quantity, expireDate, newBatchNo], (err, result) => {
+    db.query(getMaxBatchNoSql, [itemNo], (err, results) => {
       if (err) {
-        console.error('Error adding item:', err);
-        res.status(500).json({ error: 'Error adding item' });
+        console.error('Error fetching max batchNo:', err);
+        res.status(500).json({ error: 'Error fetching max batchNo' });
         return;
       }
-      res.status(201).json({ message: 'Item added successfully' });
+
+      // Determine the new batchNo
+      const maxBatchNo = results[0].maxBatchNo;
+      const newBatchNo = maxBatchNo ? maxBatchNo + 1 : 1;
+
+      // SQL query to insert the new item with the incremented batchNo and itemImage
+      const insertItemSql = 'INSERT INTO items01 (itemNo, itemName, unitPrice, quantity, expireDate, batchNo, itemImage) VALUES (?, ?, ?, ?, ?, ?, ?)';
+
+      db.query(insertItemSql, [itemNo, itemName, unitPrice, quantity, expireDate, newBatchNo, itemImage], (err, result) => { // Include itemImage in the query parameters
+        if (err) {
+          console.error('Error adding item:', err);
+          res.status(500).json({ error: 'Error adding item' });
+          return;
+        }
+        res.status(201).json({ message: 'Item added successfully' });
+      });
     });
   });
 };
+
 
 // item retreview and display in the sales rep interface
 exports.getItems90 = (req, res) => {

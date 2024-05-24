@@ -30,13 +30,28 @@ export default function Additems() {
     itemName: '', // Added itemName state
     unitPrice: '',
     quantity: '',
-    expireDate: ''
+    expireDate: '',
+    itemImage: ''
   });
+
+  const [itemImageUrl, setItemImageUrl] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+  
+    reader.onloadend = () => {
+      setFormData({ ...formData, itemImage: file });
+      setItemImageUrl(reader.result);
+    };
+  
+    reader.readAsDataURL(file);
+  };  
 
   const fetchItemName = async () => {
     const { itemNo } = formData;
@@ -44,7 +59,7 @@ export default function Additems() {
     try {
         const response = await axios.get(`http://localhost:5000/get_items/${itemNo}`);
         const data = response.data;
-        console.log(data.itemName);
+
         if (data.itemName === undefined) {
             alert('There is no registed item with this item number.');
         } else {
@@ -62,16 +77,26 @@ export default function Additems() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/add_item00', formData);
+      const formDataToSend = new FormData(); // Use the native FormData object
+      formDataToSend.append('itemNo', formData.itemNo);
+      formDataToSend.append('itemName', formData.itemName);
+      formDataToSend.append('unitPrice', formData.unitPrice);
+      formDataToSend.append('quantity', formData.quantity);
+      formDataToSend.append('expireDate', formData.expireDate);
+      formDataToSend.append('itemImage', formData.itemImage);
+
+      const responsePromise = axios.post('http://localhost:5000/add_item00', formDataToSend); // Do not set the Content-Type header manually
       setFormData({
         itemNo: '',
         itemName: '',
         unitPrice: '',
         quantity: '',
-        expireDate: ''
+        expireDate: '',
+        itemImage: ''
       });
     } catch (error) {
       console.error('Error adding item:', error);
+      notify(error, 'Something went wrong...');
     }
   };
 
@@ -166,6 +191,19 @@ export default function Additems() {
               required
             />
             </div>
+            <div className='lab2'>
+              <label>Item Image : </label>
+              <div>
+                <input
+                  key="itemImage"
+                  type="file"
+                  className='input01'
+                  name="itemImage"
+                  onChange={handleImageChange}
+                />
+                {itemImageUrl && <img src={itemImageUrl} alt="Selected" className='preview-image' />}
+              </div>
+            </div>
             <div className='btn21'>
               <center>
                 <Button variant="success" type="submit" style={{ width: '150px' }} onClick={() => { handleSubmit(); notify(); !isFormValid(); }}>CONFIRM</Button>
@@ -173,7 +211,6 @@ export default function Additems() {
               </center>
             </div>
           </form>
-          <div className="imagebottom"></div>
         </div>
       </div>
       <ToastContainer />
