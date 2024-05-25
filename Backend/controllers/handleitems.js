@@ -112,6 +112,22 @@ exports.getItems90 = (req, res) => {
   });
 };
 
+exports.updateItemQuantity = (req, res) => {
+  const { itemNo, batchNo } = req.params;
+  const { quantity } = req.body;
+
+  const sql = 'UPDATE items01 SET quantity = ? WHERE itemNo = ? AND batchNo = ?';
+  db.query(sql, [quantity, itemNo, batchNo], (err, result) => {
+    if (err) {
+      console.error('Error updating item quantity:', err);
+      res.status(500).json({ error: 'Error updating item quantity' });
+      return;
+    }
+    res.json({ message: 'Item quantity updated successfully' });
+  });
+};
+
+
 exports.getItems01 = (req, res) => {
   const sql = 'SELECT * FROM items01 GROUP BY itemNo, batchNo';
   db.query(sql, (err, result) => {

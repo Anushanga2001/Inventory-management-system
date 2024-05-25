@@ -32,6 +32,17 @@ export default function Placeshoporders() {
     }
   };
 
+  const updateItemQuantity = async (itemNo, batchNo, newQuantity) => {
+    try {
+      const response = await axios.put(`http://localhost:5000/update_item_quantity/${itemNo}/${batchNo}`, {
+        quantity: newQuantity
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleShopNameChange = (event) => {
     setShopName(event.target.value);
   };
@@ -107,6 +118,13 @@ export default function Placeshoporders() {
     try {
       const response = await axios.post('http://localhost:5000/add_shoporders', order);
       console.log(response.data);
+  
+      // Update the item quantity in the backend
+      orderItems.forEach((item) => {
+        const newQuantity = item.quantity - item.enterquantity;
+        updateItemQuantity(item.itemNo, item.batchNo, newQuantity);
+      });
+  
       // Reset the form fields and state variables
       setShopName('');
       setAddress('');
@@ -116,7 +134,7 @@ export default function Placeshoporders() {
     } catch (error) {
       console.error(error);
     }
-  };  
+  };
 
   return (
     <div className="Placeshoporders">
