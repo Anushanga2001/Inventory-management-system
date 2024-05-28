@@ -29,7 +29,7 @@
     justify-content: center;
     text-align: center;
     font-size: large;
-    padding-top: 70px;
+    padding-top: 0px;
     line-height: 50px;
     border-radius: 20px;
     border: #010101 solid 1px;
@@ -82,9 +82,13 @@
   }
   
   .nav-item{
-    margin-top: 100px;
+    margin-top: 60px;
   }
 
   .nav-item1{
     margin-top: 50px;
+  }
+
+  .nav-item2{
+    margin-top: 60px;
   }

@@ -47,7 +47,6 @@ function ShopOrders1() {
         <div className='re23'>SHOP ORDERS</div>
         <form action="/search" method="get">
           <input type="text" placeholder="Search..." name="q" value={searchTerm} onChange={handleSearchChange} />
-          <button type="submit">Search</button>
         </form>
       </div>
       <div className='re1'>
@@ -63,7 +62,7 @@ function ShopOrders1() {
           <tbody>
             {filteredOrders.map((order, index) => (
                     <tr key={index} >
-                      <td><Link to={`/salesrep/${order.orderNo}`}>{order.orderNo}</Link></td>
+                      <td><Link to={`/stockmanager/${order.orderNo}`}>{order.orderNo}</Link></td>
                       <td>{order.orderDate.substring(0, 10)}</td> {/* Modify orderDate display */}
                       <td>{order.shopName}</td>
                       <td>{order.address}</td>

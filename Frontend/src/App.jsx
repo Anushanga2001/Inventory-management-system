@@ -24,6 +24,7 @@ import Notification from './pages/Stockmanager/Notification';
 
 // 3rd navigation bar pages
 import Placeshoporders from './pages/Salesrep/Placeshoporders';
+import Map from './pages/Salesrep/Map';
 
 // common pages
 import Edit from './pages/Edit';
@@ -49,6 +50,7 @@ function App() {
       <div>
       <ToastContainer />
         <Routes>
+
           <Route path="/" element={<Signin />} />
           <Route path="/Edit" element={<Edit />} />
           <Route path="/Updateprofile" element={<Updateprofile />} />
@@ -59,7 +61,7 @@ function App() {
           <Route path="/owner" element={<Owner />}>
             <Route path="Addusers" element={<Addusers />} />
             <Route path="Availability" element={<Availability />} />
-            <Route path="Shoporders" element={<Shoporders1 />} />
+            <Route path="Shoporders" element={<Shoporders2 />} />
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
             <Route path="add/:orderno" element={<Dynamiccompanyorders />} />
             <Route path="Placecompanyorders" element={<Placecompanyorders />} />
@@ -75,7 +77,7 @@ function App() {
             <Route path="Placecompanyorders" element={<Placecompanyorders />} />
             <Route path="order-details/:orderNumber" component={<OrderDetails/>} />
             <Route path="Availability" element={<Availability />} />
-            <Route path="Shoporders" element={<Shoporders2 />} />
+            <Route path="Shoporders" element={<Shoporders1 />} />
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
             <Route path="add/:orderno" element={<Dynamiccompanyorders />} />
             <Route path="Companyorders2" element={<Companyorders2 />} />
@@ -86,7 +88,9 @@ function App() {
             <Route path="Placeshoporders" element={<Placeshoporders />} />
             <Route path="Shoporders" element={<Shoporders />} />
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
+            <Route path="Map" element={<Map />} />
           </Route>
+
          </Routes>
       </div>
     </BrowserRouter>

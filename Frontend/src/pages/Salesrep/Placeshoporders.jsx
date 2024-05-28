@@ -16,7 +16,7 @@ export default function Placeshoporders() {
 
   const filteredItems = items.filter((item) =>
     item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).sort((a, b) => a.itemNo - b.itemNo); // sort items by batch number
 
   useEffect(() => {
     fetchItems();
@@ -146,7 +146,6 @@ export default function Placeshoporders() {
         <div className="search010">
           <form action="/search" method="get">
             <input type="text" placeholder="Search..." name="q" value={searchTerm} onChange={handleSearchChange} />
-            <button type="submit">Search</button>
           </form>
         </div>
       </div>

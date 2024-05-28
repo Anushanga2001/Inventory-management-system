@@ -94,7 +94,6 @@ export default function Placecompanyorders() {
       <div className="search011">
         <form action="/search" method="get">
           <input type="text" placeholder="Search..." name="q" value={searchTerm} onChange={handleSearchChange} />
-          <button type="submit">Search</button>
         </form>
       </div>
       <div className='content02'>

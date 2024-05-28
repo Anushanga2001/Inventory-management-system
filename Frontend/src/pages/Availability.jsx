@@ -71,7 +71,6 @@ export default function Availability() {
         <div class='hh3'>
           <form action="/search" method="get">
             <input type="text" placeholder="Search..." name="q" value={searchTerm} onChange={handleSearchChange}/>
-            <button type="submit">Search</button>
           </form>
         </div>
       </div>

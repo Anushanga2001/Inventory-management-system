@@ -47,7 +47,6 @@ function ShopOrders() {
         <div className='re23'>SHOP ORDERS</div>
         <form action="/search" method="get">
           <input type="text" placeholder="Search..." name="q" value={searchTerm} onChange={handleSearchChange} />
-          <button type="submit">Search</button>
         </form>
       </div>
       <div className='re1'>
