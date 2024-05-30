@@ -6,6 +6,7 @@ import { Table } from 'react-bootstrap';
 export default function Notification() {
   const [items, setItems] = useState([]);
   const [notificationsDeleted, setNotificationsDeleted] = useState(false);
+  const [newNotifications, setNewNotifications] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,9 @@ export default function Notification() {
         await axios.post(`http://localhost:5000/add_notifications`, response.data);
         console.log(response.data);
 
+        // Set new notifications state to true
+        setNewNotifications(true);
+
       } catch (error) {
         console.error(error);
       }
@@ -44,6 +48,7 @@ export default function Notification() {
       await axios.delete(`http://localhost:5000/delete_notification/${itemNo}/${batchNo}`);
       setItems(items.filter(item => item.itemNo !== itemNo || item.batchNo !== batchNo));
       setNotificationsDeleted(true);
+      setNewNotifications(false); // Reset new notifications state
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +56,9 @@ export default function Notification() {
 
   return (
     <div className='Notification'>
-      <h2 style={{color:"#000000", fontWeight:"bold", fontSize:"40px", textAlign:"center"}}>Notification Items</h2>
+      <h2 style={{color:"#000000", fontWeight:"bold", fontSize:"40px", textAlign:"center"}}>
+        Notification Items {newNotifications && <span className="notice-mark">🔔</span>}
+      </h2>
       {items.length === 0 ? (
         <p>No items found matching the criteria.</p>
       ) : Array.isArray(items) && (

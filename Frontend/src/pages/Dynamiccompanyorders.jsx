@@ -26,6 +26,9 @@ function Dynamiccompanyorders() {
   return (
     <div>
       <center><h2 className='fr1'>Order Details</h2></center>
+      <div className='companyorders_no' style={{ marginLeft: "70px" }}>
+        <p>Order Number: <b>{orderno}</b></p>
+      </div>
       <table className='tablew'>
         <thead>
           <tr>

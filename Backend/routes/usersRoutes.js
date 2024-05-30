@@ -28,8 +28,6 @@ router.get('/get_items/:ItemNo', itemsController2.getItem)
 router.get('/get_items', itemsController2.getItems90);
 router.get('/get_item040', itemsController2.getItem040);
 router.delete('/delete_items/:itemNo/:batchNo', itemsController2.deleteItem);
-router.put('/update_item_quantity/:itemNo/:batchNo', itemsController2.updateItemQuantity);
-
 
 router.post('/add_companyorders', itemsController3.addCompanyOrders);
 router.get('/get_companyorders', itemsController3.getCompanyOrders);

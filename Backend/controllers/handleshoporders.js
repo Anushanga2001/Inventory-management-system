@@ -26,8 +26,8 @@ exports.addShopOrders = (req, res) => {
       const generatedOrderNo = result1.insertId;
 
       // Insert the order items into the shop_orders_include table
-      const itemSql = 'INSERT INTO shop_orders_include (orderNo, itemNo, itemName, unitPrice, quantity) VALUES ?';
-      const itemValues = items.map((item) => [generatedOrderNo, item.itemNo, item.itemName, item.unitPrice, item.enterquantity]);
+      const itemSql = 'INSERT INTO shop_orders_include (orderNo, itemNo, batchNo, itemName, unitPrice, quantity) VALUES ?';
+      const itemValues = items.map((item) => [generatedOrderNo, item.itemNo, item.batchNo, item.itemName, item.unitPrice, item.enterquantity]);
       db.query(itemSql, [itemValues], (err, result2) => {
         if (err) {
           console.error('Error adding order items:', err);
@@ -42,15 +42,15 @@ exports.addShopOrders = (req, res) => {
         // Update the quantity in the items01 table
         const updateQuantityPromises = items.map((item) => {
           return new Promise((resolve, reject) => {
-            const updateQuantitySql = 'UPDATE items01 SET quantity = IF(quantity >= ?, quantity - ?, 0) WHERE itemNo = ?';
-            db.query(updateQuantitySql, [item.enterquantity, item.enterquantity, item.itemNo], (err, result3) => {
+            const updateQuantitySql = 'UPDATE items01 SET quantity = IF(quantity >= ?, quantity - ?, 0) WHERE itemNo = ? AND batchNo = ?';
+            db.query(updateQuantitySql, [item.enterquantity, item.enterquantity, item.itemNo, item.batchNo], (err, result3) => {
               if (err) {
                 console.error('Error updating quantity:', err);
                 reject(err);
               } else {
                 // Retrieve the updated quantity
-                const selectQuantitySql = 'SELECT quantity FROM items01 WHERE itemNo = ?';
-                db.query(selectQuantitySql, [item.itemNo], (err, result4) => {
+                const selectQuantitySql = 'SELECT quantity FROM items01 WHERE itemNo = ? AND batchNo = ?';
+                db.query(selectQuantitySql, [item.itemNo, item.batchNo], (err, result4) => {
                   if (err) {
                     console.error('Error retrieving updated quantity:', err);
                     reject(err);

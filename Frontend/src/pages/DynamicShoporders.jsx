@@ -11,14 +11,23 @@ function DynamicShoporders() {
   let { orderNo } = useParams();
   const [orderDetails, setOrderDetails] = useState([]);
   const [shop, setShop] = useState([]);
+  const [isSalesRep, setIsSalesRep] = useState(false);
 
   const downloadPDF = async () => {
     const input = document.getElementById('content-to-download');
-    html2canvas(input, { scale: 0.8 }) // Adjust the scale value here
+    html2canvas(input, { scale: 1 }) // Adjust the scale value here to 1 for better resolution
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', [input.offsetWidth, input.offsetHeight]);
-        pdf.addImage(imgData, 'JPEG', 0, 0);
+        const pdf = new jsPDF('p', 'mm', 'a4'); // Set the format to A4
+
+        // Calculate dimensions
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        // Add image with margins (10mm)
+        const margin = 10;
+        pdf.addImage(imgData, 'PNG', margin, margin, pdfWidth - 2 * margin, pdfHeight - 2 * margin);
         pdf.save('table.pdf');
       });
   };
@@ -53,16 +62,34 @@ function DynamicShoporders() {
     fetchShop();
   }, [orderNo]);
 
+  // validate only sales rep only see the print option
+  useEffect(() => {
+    const jobPosition = localStorage.getItem('jobPosition');
+    if (jobPosition === 'sales representative') {
+      setIsSalesRep(true);
+    }
+  }, []);
+
+
   return (
     <div className='a23'>
     <div id="content-to-download" style={{ width: '100%', height: '100%'}}>
-      <center><h2 style={{color:"#000000", fontFamily:"arial", fontSize:"40px",marginTop:"30px"}}><b>Order Details</b></h2></center>
-      {Array.isArray(shop) && shop.map((item, id) => (
-        <div className="shop-details" key={id}>
-          <p>Shop Name : <b>{item.shopName}</b></p>
-          <p>Address : <b>{item.address}</b></p>
-        </div>
-      ))}
+      <center><h2 style={{color:"#000000", fontFamily:"arial", fontSize:"40px",marginTop:"30px", marginBottom:"-15px"}}><b>Radeepa Distributors</b></h2><br/><span className='a29'>Colombo Road <br/>Yatiyantota<br/>036-2233567 / 077-234543213</span></center>
+        {Array.isArray(shop) && shop.map((item, id) => {
+          const orderDate = new Date(item.orderDate).toISOString().slice(0, 10); // get only date
+          return (
+            <div className="shop-details" key={id}>
+              <div className="shop-details1">
+                <p>Shop Name : <b>{item.shopName}</b></p>
+                <p>Address : <b>{item.address}</b></p>
+              </div>
+              <div className="shop-details2">
+                <p>Order No : <b>{item.orderNo}</b></p>
+                <p>Order Date : <b>{orderDate}</b></p>
+              </div>
+            </div>
+          );
+})}
       <table className='tablew'>
         <thead>
           <tr>
@@ -90,8 +117,9 @@ function DynamicShoporders() {
           </tr>
         </tbody>
       </table> 
+      {isSalesRep && (<center><h3 className='fr1'>THANK YOU!</h3></center>)}
       </div>
-        <button onClick={downloadPDF} className='btn77' style={{border:"2px solid black", fontFamily:"arial", width:"150px", color:"white", backgroundColor:"black", height:"40px"}}><b>PRINT BILL</b></button>
+      {isSalesRep && (<button onClick={downloadPDF} className='btn77' style={{border:"2px solid black", fontFamily:"arial", width:"150px", color:"white", backgroundColor:"black", height:"40px"}}><b>PRINT BILL</b></button>)}
       </div>
   );
 }

@@ -25,21 +25,10 @@ export default function Placeshoporders() {
   const fetchItems = async () => {
     try {
       const response = await axios.get('http://localhost:5000/get_items');
-      // console.log(response.data);
+      console.log(response.data);
       setItems(response.data);
     } catch (error) {
       console.error('Error fetching items:', error);
-    }
-  };
-
-  const updateItemQuantity = async (itemNo, batchNo, newQuantity) => {
-    try {
-      const response = await axios.put(`http://localhost:5000/update_item_quantity/${itemNo}/${batchNo}`, {
-        quantity: newQuantity
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -56,7 +45,8 @@ export default function Placeshoporders() {
   
     if (itemIndex !== -1) {
       const updatedItems = [...items];
-      updatedItems[itemIndex] = {
+      updatedItems[itemIndex] = 
+      {
         ...updatedItems[itemIndex],
         enterquantity: parseInt(enterquantity)
       };
@@ -105,6 +95,7 @@ export default function Placeshoporders() {
       itemNo: item.itemNo,
       itemName: item.itemName,
       unitPrice: item.unitPrice,
+      batchNo: item.batchNo,
       enterquantity: Math.min(item.quantity, item.enterquantity), // Use the minimum of the exist quantity and the enter quantity
     }));
   
@@ -119,18 +110,13 @@ export default function Placeshoporders() {
       const response = await axios.post('http://localhost:5000/add_shoporders', order);
       console.log(response.data);
   
-      // Update the item quantity in the backend
-      orderItems.forEach((item) => {
-        const newQuantity = item.quantity - item.enterquantity;
-        updateItemQuantity(item.itemNo, item.batchNo, newQuantity);
-      });
-  
       // Reset the form fields and state variables
       setShopName('');
       setAddress('');
       setOrderItems([]);
       alert('Order placed successfully');
       window.location.reload();
+
     } catch (error) {
       console.error(error);
     }

@@ -96,11 +96,7 @@ exports.addItem00 = (req, res) => {
 
 // item retreview and display in the sales rep interface
 exports.getItems90 = (req, res) => {
-  const sql = `SELECT itemNo, itemName, unitPrice, quantity, itemImage, batchNo
-  FROM items01
-  WHERE quantity > 0
-  GROUP BY itemNo, batchNo
-  ORDER BY batchNo`;
+  const sql = `SELECT itemNo, itemName, unitPrice, quantity, itemImage, batchNo FROM items01 WHERE quantity > 0`;
   
   db.query(sql, (err, result) => {
     if (err) {
@@ -111,50 +107,6 @@ exports.getItems90 = (req, res) => {
     res.json(result);
   });
 };
-
-exports.updateItemQuantity = (req, res) => {
-  const { itemNo, batchNo } = req.params;
-  const { quantity } = req.body;
-
-  // Retrieve the existing quantity of the item from the database
-  const sqlSelect = 'SELECT quantity FROM items01 WHERE itemNo = ? AND batchNo = ?';
-  db.query(sqlSelect, [itemNo, batchNo], (err, result) => {
-    if (err) {
-      console.error('Error retrieving item quantity:', err);
-      res.status(500).json({ error: 'Error retrieving item quantity' });
-      return;
-    }
-
-    // Check if the item exists in the database
-    if (result.length === 0) {
-      res.status(404).json({ error: 'Item not found' });
-      return;
-    }
-
-    // Subtract the entered quantity from the existing quantity
-    const newQuantity = result[0].quantity - quantity;
-
-    // Check if the new quantity is valid (i.e. non-negative)
-    if (newQuantity < 0) {
-      res.status(400).json({ error: 'Invalid quantity' });
-      return;
-    }
-
-    // Update the quantity of the item in the database
-    const sqlUpdate = 'UPDATE items01 SET quantity = ? WHERE itemNo = ? AND batchNo = ?';
-    db.query(sqlUpdate, [newQuantity, itemNo, batchNo], (err, result) => {
-      if (err) {
-        console.error('Error updating item quantity:', err);
-        res.status(500).json({ error: 'Error updating item quantity' });
-        return;
-      }
-
-      // Display the updated quantity in the response
-      res.json({ message: 'Item quantity updated successfully', quantity: newQuantity });
-    });
-  });
-};
-
 
 exports.getItems01 = (req, res) => {
   const sql = 'SELECT * FROM items01 GROUP BY itemNo, batchNo';
@@ -200,7 +152,8 @@ exports.getsItems = (req, res) => {
 };
 
 exports.getItem040 = (req, res) => {
-  const sql = 'SELECT itemNo, batchNo, itemName, expireDate, quantity FROM items01 WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)) OR (quantity < 10)';
+  const sql = `SELECT itemNo, batchNo, itemName, expireDate, quantity FROM items01 
+  WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)) OR (quantity < 10 AND quantity > 0)`;
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error fetching items:', err);
