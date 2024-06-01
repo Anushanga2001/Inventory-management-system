@@ -29,7 +29,8 @@ export default function Addnewitems() {
     itemName: '',
     unitPrice: '',
     quantity: '',
-    expireDate: ''
+    expireDate: '',
+    noOfQuantity: ''
   });
 
   const [error, setError] = useState('');
@@ -77,6 +78,7 @@ export default function Addnewitems() {
       formDataToSend.append('unitPrice', formData.unitPrice);
       formDataToSend.append('quantity', formData.quantity);
       formDataToSend.append('expireDate', formData.expireDate);
+      formDataToSend.append('noOfQuantity', formData.noOfQuantity);
       formDataToSend.append('itemImage', selectedFile);
   
       const responsePromise = axios.post('http://localhost:5000/add_item', formDataToSend);
@@ -85,7 +87,8 @@ export default function Addnewitems() {
         itemName: '',
         unitPrice: '',
         quantity: '',
-        expireDate: ''
+        expireDate: '',
+        noOfQuantity: ''
       });
       setSelectedFile(null);
     } catch (error) {
@@ -99,7 +102,8 @@ export default function Addnewitems() {
       itemName: '',
       unitPrice: '',
       quantity: '',
-      expireDate: ''
+      expireDate: '',
+      noOfQuantity: ''
     });
     setSelectedFile(null); // Reset selected file state on cancel
   };
@@ -158,6 +162,19 @@ export default function Addnewitems() {
             name="expireDate"
             className='input01'
             value={formData.expireDate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='lab1'>
+          <label htmlFor="noOfQuantity">Notification comes quantity :</label>
+          <input
+            type="number"
+            id="noOfQuantity"
+            placeholder='Enter quantity'
+            name="noOfQuantity"
+            className='input01'
+            value={formData.noOfQuantity}
             onChange={handleChange}
             required
           />

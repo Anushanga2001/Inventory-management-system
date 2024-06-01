@@ -1,13 +1,17 @@
 /* Reports.css */
 .report {
-    background-color: #f9f9f9; /* Light gray background color */
+    background-color: #f9f9f9;
     padding: 20px;
-    border-radius: 10px; /* Rounded corners for the report container */
+    border-radius: 10px; 
   }
   
   .report h2 {
-    color: #333; /* Dark gray heading color */
+    color: #333; 
+  }
+
+  .de1{
+    background-color: aqua;
   }
   
-  /* You can add additional styling as needed */
+
   

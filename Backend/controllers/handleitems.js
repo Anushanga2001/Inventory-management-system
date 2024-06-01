@@ -61,7 +61,7 @@ exports.addItem00 = (req, res) => {
       return;
     }
 
-    const { itemNo, itemName, unitPrice, quantity, expireDate } = req.body;
+    const { itemNo, itemName, unitPrice, quantity, expireDate, noOfQuantity } = req.body;
     const itemImage = req.file ? req.file.filename : ''; // Set itemImage to an empty string if no file is uploaded
 
     // SQL query to get the current highest batchNo for the given itemNo
@@ -79,9 +79,9 @@ exports.addItem00 = (req, res) => {
       const newBatchNo = maxBatchNo ? maxBatchNo + 1 : 1;
 
       // SQL query to insert the new item with the incremented batchNo and itemImage
-      const insertItemSql = 'INSERT INTO items01 (itemNo, itemName, unitPrice, quantity, expireDate, batchNo, itemImage) VALUES (?, ?, ?, ?, ?, ?, ?)';
+      const insertItemSql = 'INSERT INTO items01 (itemNo, itemName, unitPrice, quantity, expireDate, batchNo, noOfQuantity, itemImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
-      db.query(insertItemSql, [itemNo, itemName, unitPrice, quantity, expireDate, newBatchNo, itemImage], (err, result) => { // Include itemImage in the query parameters
+      db.query(insertItemSql, [itemNo, itemName, unitPrice, quantity, expireDate, newBatchNo, noOfQuantity, itemImage], (err, result) => { // Include itemImage in the query parameters
         if (err) {
           console.error('Error adding item:', err);
           res.status(500).json({ error: 'Error adding item' });
@@ -92,7 +92,6 @@ exports.addItem00 = (req, res) => {
     });
   });
 };
-
 
 // item retreview and display in the sales rep interface
 exports.getItems90 = (req, res) => {
@@ -153,7 +152,7 @@ exports.getsItems = (req, res) => {
 
 exports.getItem040 = (req, res) => {
   const sql = `SELECT itemNo, batchNo, itemName, expireDate, quantity FROM items01 
-  WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)) OR (quantity < 10 AND quantity > 0)`;
+  WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)) OR (quantity < 10 AND quantity > 0)`;
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error fetching items:', err);

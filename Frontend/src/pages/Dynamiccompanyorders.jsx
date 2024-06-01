@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 function Dynamiccompanyorders() {
 
   let { orderno } = useParams();
+  let { orderNo } = useParams();
   const [orderDetails, setOrderDetails] = useState([]);
-  
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -15,17 +15,20 @@ function Dynamiccompanyorders() {
         const response = await axios.get(`http://localhost:5000/get_order_details/${orderno}`);
         console.log(response.data);
         setOrderDetails(response.data);
+
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchOrderDetails();
-  }, [orderno]);
+  }, [orderno, orderNo]);
+
+
 
   return (
     <div>
-      <center><h2 className='fr1'>Order Details</h2></center>
+      <center><h2 className='fr1'>Company Order Details</h2></center>
       <div className='companyorders_no' style={{ marginLeft: "70px" }}>
         <p>Order Number: <b>{orderno}</b></p>
       </div>

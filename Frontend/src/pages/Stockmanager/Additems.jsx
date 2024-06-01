@@ -31,6 +31,7 @@ export default function Additems() {
     unitPrice: '',
     quantity: '',
     expireDate: '',
+    noOfQuantity: '',
     itemImage: ''
   });
 
@@ -83,6 +84,7 @@ export default function Additems() {
       formDataToSend.append('unitPrice', formData.unitPrice);
       formDataToSend.append('quantity', formData.quantity);
       formDataToSend.append('expireDate', formData.expireDate);
+      formDataToSend.append('noOfQuantity', formData.noOfQuantity);
       formDataToSend.append('itemImage', formData.itemImage);
 
       const responsePromise = axios.post('http://localhost:5000/add_item00', formDataToSend); // Do not set the Content-Type header manually
@@ -92,6 +94,7 @@ export default function Additems() {
         unitPrice: '',
         quantity: '',
         expireDate: '',
+        noOfQuantity: '',
         itemImage: ''
       });
     } catch (error) {
@@ -107,13 +110,14 @@ export default function Additems() {
       unitPrice: '',
       quantity: '',
       expireDate: '',
+      noOfQuantity: '',
       itemImage: ''
     });
   };
 
   const isFormValid = () => {
-    const { itemNo, itemName, unitPrice, quantity, expireDate } = formData;
-    return itemNo && itemName && unitPrice && quantity && expireDate;
+    const { itemNo, itemName, unitPrice, quantity, expireDate, noOfQuantity } = formData;
+    return itemNo && itemName && unitPrice && quantity && expireDate && noOfQuantity;
   };
 
   return (
@@ -190,6 +194,19 @@ export default function Additems() {
               onChange={handleChange}
               required
             />
+            </div>
+            <div className='lab2'>
+              <label htmlFor="noOfQuantity">Notification comes quantity :</label>
+              <input
+                type="number"
+                id="noOfQuantity"
+                placeholder='Enter quantity'
+                name="noOfQuantity"
+                className='input01'
+                value={formData.noOfQuantity}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div className='lab2'>
               <label>Item Image : </label>

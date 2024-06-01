@@ -74,7 +74,7 @@ function DynamicShoporders() {
   return (
     <div className='a23'>
     <div id="content-to-download" style={{ width: '100%', height: '100%'}}>
-      <center><h2 style={{color:"#000000", fontFamily:"arial", fontSize:"40px",marginTop:"30px", marginBottom:"-15px"}}><b>Radeepa Distributors</b></h2><br/><span className='a29'>Colombo Road <br/>Yatiyantota<br/>036-2233567 / 077-234543213</span></center>
+      <center><h2 style={{color:"#000000", fontFamily:"arial", fontSize:"40px",marginTop:"30px", marginBottom:"-15px"}}><b>Radeepa Distributors</b></h2><br/><b><span className='a29'>Colombo Road <br/>Yatiyantota<br/>036-2233567 / 077-234543213</span></b></center>
         {Array.isArray(shop) && shop.map((item, id) => {
           const orderDate = new Date(item.orderDate).toISOString().slice(0, 10); // get only date
           return (
