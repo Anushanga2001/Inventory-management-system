@@ -151,8 +151,8 @@ exports.getsItems = (req, res) => {
 };
 
 exports.getItem040 = (req, res) => {
-  const sql = `SELECT itemNo, batchNo, itemName, expireDate, quantity FROM items01 
-  WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)) OR (quantity < 10 AND quantity > 0)`;
+  const sql = `SELECT itemNo, batchNo, itemName, expireDate, quantity, noOfQuantity FROM items01 
+  WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)) OR (quantity < noOfQuantity  AND quantity > 0)`;
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error fetching items:', err);
@@ -162,6 +162,3 @@ exports.getItem040 = (req, res) => {
     res.json(result);
   });
 };
-
-
-

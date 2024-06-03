@@ -8,6 +8,8 @@ const itemsController3 = require('../controllers/handlecompanyorders');
 const itemsController4 = require('../controllers/displayitems');
 const itemsController5 = require('../controllers/handleshoporders');
 const itemsController6 = require('../controllers/notification');
+const itemsController7 = require('../controllers/Reports');
+
 
 router.post('/add_user', usersController.addUser);
 router.get('/get_users', usersController.getUsers);
@@ -41,4 +43,11 @@ router.get('/get_shoporder_details/:orderNo', itemsController5.getshopOrdersByOr
 router.get('/display_items', itemsController4.getdisplay)
 router.post('/add_notifications', itemsController6.addnotifications)
 router.delete('/delete_notification/:itemNo/:batchNo', itemsController6.deletenotifications)
+
+router.get('/get_reports', itemsController7.getreports)
+router.get('/get_reports1', itemsController7.getreports1)
+router.get('/get_reports2', itemsController7.getreports2)
+router.get('/get_reports3', itemsController7.getreports3)
+router.get('/get_reports4', itemsController7.getreports4)
+
 module.exports = router;
