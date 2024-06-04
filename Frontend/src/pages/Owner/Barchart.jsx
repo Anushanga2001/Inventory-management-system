@@ -35,13 +35,19 @@ const Barchart = () => {
           const itemNames = data.map(item => item.itemName);
           const quantities = data.map(item => item.totalQuantity);
 
+          // Generate an array of colors for each item
+          const colors = [];
+          for (let i = 0; i < quantities.length; i++) {
+            colors.push(`rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.6)`);
+          }
+
           setChartData({
             labels: itemNames,
             datasets: [
               {
                 label: 'Item Quantities',
                 data: quantities,
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                backgroundColor: colors, // Use the generated array of colors
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
               },

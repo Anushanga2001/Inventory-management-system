@@ -3,10 +3,10 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 function Dynamiccompanyorders() {
-
   let { orderno } = useParams();
   let { orderNo } = useParams();
   const [orderDetails, setOrderDetails] = useState([]);
+  const [orderDate, setOrderDate] = useState('');
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -16,6 +16,11 @@ function Dynamiccompanyorders() {
         console.log(response.data);
         setOrderDetails(response.data);
 
+        // get the date of the order
+        const date = new Date(response.data[0].orderDate);
+        date.setDate(date.getDate() + 1); 
+        setOrderDate(date.toISOString().substring(0, 10));
+        
       } catch (error) {
         console.log(error);
       }
@@ -30,7 +35,8 @@ function Dynamiccompanyorders() {
     <div>
       <center><h2 className='fr1'>Company Order Details</h2></center>
       <div className='companyorders_no' style={{ marginLeft: "70px" }}>
-        <p>Order Number: <b>{orderno}</b></p>
+        <p>Order Number : <b>{orderno}</b></p>
+        <p>Order Date : <b>{orderDate}</b></p>
       </div>
       <table className='tablew'>
         <thead>

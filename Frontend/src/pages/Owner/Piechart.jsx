@@ -8,7 +8,6 @@ import {
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
-// Register the components
 ChartJS.register(
   ArcElement,
   Tooltip,

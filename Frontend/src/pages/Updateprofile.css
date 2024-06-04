@@ -7,17 +7,20 @@
         align-items: center;
         background-color: rgba(104, 106, 99, 0.281);
         border-radius: 30px;
-        
+        background-image: url('C:\Users\Anushanga\Desktop\Radeep distributors\Frontend\src\assets\happy-man (1).png');
+        background-repeat: no-repeat;
+        background-position: 95% 100%;       
 }
 
 .formedit{
   width: 600px;
   justify-content: center;
   align-items: center;
-  font-size: larger;
-  border: 1px solid #000000;
+  font-size: 20px;
+  border: 1px solid rgb(247, 247, 0);
   padding: 30px;
-  background-color: #5858583f;
+  background-color: #0000009a;
+  color: rgb(247, 247, 0);
   border-radius: 30px;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -25,7 +28,7 @@
 
 .h00{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 60px;
+    font-size: 100px;
     margin-bottom: 60px;
 }
 

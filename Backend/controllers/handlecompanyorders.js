@@ -63,7 +63,8 @@ exports.getCompanyOrders = (req, res) => {
 
 exports.getCompanyOrdersByOrderNo = (req, res) => {
   const { orderno } = req.params;
-  const sql = 'SELECT * FROM company_orders_include WHERE orderno = ?';
+  const sql = `SELECT company_orders_include.*, company_orders1.orderDate FROM company_orders_include RIGHT JOIN company_orders1 
+  ON company_orders_include.orderno = company_orders1.orderno WHERE company_orders_include.orderno = ?`;
   db.query(sql, [orderno], (err, result) => {
     if (err) {
       console.error('Error fetching orders:', err);

@@ -1,36 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Notification.css';
 import { Table } from 'react-bootstrap';
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:5000'); 
 
 export default function Notification() {
   const [items, setItems] = useState([]);
+  const itemsRef = useRef(items);
   const [notificationsDeleted, setNotificationsDeleted] = useState(false);
   const [newNotifications, setNewNotifications] = useState(false);
 
   useEffect(() => {
+    itemsRef.current = items;
+  }, [items]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const response = await axios.get("http://localhost:5000/get_item040");
 
-        // Add the message to each item based on the quantity and expiry date
         const itemsWithMessage = response.data.map(item => {
           let message = '';
-          if (item.quantity < 10) {
-            message = 'less stock';
+          if (item.quantity === 0) {
+            message = 'Empty stock';
+          } else if (item.quantity < item.noOfQuantity) {
+            message = 'Less stock';
           } else {
-            message = 'expire date is close';
+            message = 'Expire date is close';
           }
           return { ...item, message };
-        });
+        });        
 
         setItems(itemsWithMessage);
 
-        // Make a POST request to the server to add the items to another table
-        await axios.post(`http://localhost:5000/add_notifications`, response.data);
-        console.log(response.data);
-
-        // Set new notifications state to true
         setNewNotifications(true);
 
       } catch (error) {
@@ -41,18 +46,22 @@ export default function Notification() {
     if (!notificationsDeleted) {
       fetchData();
     }
-  }, [notificationsDeleted]);
 
-  const handleDelete = async (itemNo, batchNo) => {
-    try {
-      await axios.delete(`http://localhost:5000/delete_notification/${itemNo}/${batchNo}`);
-      setItems(items.filter(item => item.itemNo !== itemNo || item.batchNo !== batchNo));
-      setNotificationsDeleted(true);
-      setNewNotifications(false); // Reset new notifications state
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    // WebSocket event handlers
+    const handleNewNotification = (newItem) => {
+      setItems(prevItems => [...prevItems, { ...newItem, message: 'expire date is close' }]);
+      setNewNotifications(true);
+    };
+
+    // Subscribe to WebSocket events
+    socket.on('new_notification', handleNewNotification);
+
+    // Cleanup: Unsubscribe from WebSocket events and disconnect
+    return () => {
+      socket.off('new_notification', handleNewNotification);
+      socket.disconnect();
+    };
+  }, [notificationsDeleted]);
 
   return (
     <div className='Notification'>
@@ -65,28 +74,33 @@ export default function Notification() {
         <div className='cis1'>
         <Table striped bordered hover className='wwe1'>
           <thead>
-            <tr>
+            <tr style={{fontSize: "20px"}}>
               <th>Item No</th>
               <th>Batch No</th>
               <th>Item Name</th>
               <th>Message</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
               {items.map((item, index) => {
+
+                let messageColor = '';
+
+                if (item.message === 'Empty stock') {
+                  messageColor = 'red';
+                } else if (item.message === 'Less stock') {
+                  messageColor = 'brown';
+                } else {
+                  messageColor = 'blue';
+                }
+
                 const { itemNo, batchNo, itemName } = item;
                 return (
                   <tr key={index}>
                     <td>{itemNo}</td>
                     <td>{batchNo}</td>
                     <td>{itemName}</td>
-                    <td>{item.message}</td>
-                    <td>
-                      <button className="action-button-delete1" onClick={() => handleDelete(itemNo, batchNo)} style={{marginTop: '0px'}}>
-                        Delete
-                      </button>
-                    </td>
+                    <td style={{ color: messageColor }}><b>{item.message}</b></td>             
                   </tr>
                 );
               })}

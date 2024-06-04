@@ -69,13 +69,13 @@ export default function Updateprofile() {
         <div className='Updateprofile'>
             <div className='tt'>
             <Link to="/Edit" style={{ marginLeft: '80%', marginBottom: '30px' }}>
-                <Button variant="dark">Back</Button>
+                <Button variant="dark" style={{width: '150px', height: "40px" , backgroundColor: "rgba(0, 0, 0, 0.8)", color: "yellow", fontSize: "18px"}}><b>Back</b></Button>
             </Link>
             </div>
-            <h1 className='h00'>Update Profile</h1>
+            <h1 className='h00'>Upadte Profile</h1>
             <Form onSubmit={handleSubmit} className='formedit'>
                 <Form.Group controlId="firstName">
-                    <Form.Label>First Name</Form.Label>
+                    <Form.Label><b>First Name</b></Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="Enter your first name" 
@@ -86,7 +86,7 @@ export default function Updateprofile() {
                 </Form.Group>
 
                 <Form.Group controlId="lastName">
-                    <Form.Label>Last Name</Form.Label>
+                    <Form.Label><b>Last Name</b></Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="Enter your last name" 
@@ -97,7 +97,7 @@ export default function Updateprofile() {
                 </Form.Group>
 
                 <Form.Group controlId="dob">
-                    <Form.Label>Date of Birth</Form.Label>
+                    <Form.Label><b>Date of Birth</b></Form.Label>
                     <Form.Control 
                         type="date" 
                         placeholder="Enter your date of birth" 
@@ -106,8 +106,8 @@ export default function Updateprofile() {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit" className='btn'>
-                    Submit
+                <Button variant="dark" type="submit" className='btn' style={{backgroundColor: "white", color: "black"}}>
+                    <b>Submit</b>
                 </Button>
             </Form>
         </div>

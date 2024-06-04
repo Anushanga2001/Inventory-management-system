@@ -51,16 +51,18 @@ export default function Availability() {
 
   // Function to handle delete button click
   const handleDelete = async (itemNo, batchNo) => {
-    try {
-      const response = await axios.delete(`http://localhost:5000/delete_items/${itemNo}/${batchNo}`);
-      if (response.status === 200) {
-        // Item deleted successfully, update the state
-        const updatedItems = items.filter((item) => item.itemNo !== itemNo || item.batchNo !== batchNo);
-        setItems(updatedItems);
-        setFilteredItems(updatedItems);
+    if (window.confirm("Are you sure you want to delete this item? Yes or No")) {
+      try {
+        const response = await axios.delete(`http://localhost:5000/delete_items/${itemNo}/${batchNo}`);
+        if (response.status === 200) {
+          // Item deleted successfully, update the state
+          const updatedItems = items.filter((item) => item.itemNo !== itemNo || item.batchNo !== batchNo);
+          setItems(updatedItems);
+          setFilteredItems(updatedItems);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };  
 

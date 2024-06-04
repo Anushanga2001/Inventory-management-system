@@ -9,14 +9,15 @@ export default function Placeshoporders() {
   const [shopName, setShopName] = useState("");
   const [address, setAddress] = useState("");
   const [orderItems, setOrderItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]); 
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    const filtered = items.filter((item) =>
+      item.itemName.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setFilteredItems(filtered); // update filteredItems state
   };
-
-  const filteredItems = items.filter((item) =>
-    item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
-  ).sort((a, b) => a.itemNo - b.itemNo); // sort items by batch number
 
   useEffect(() => {
     fetchItems();
@@ -27,6 +28,10 @@ export default function Placeshoporders() {
       const response = await axios.get('http://localhost:5000/get_items');
       console.log(response.data);
       setItems(response.data);
+      setFilteredItems(response.data); // set filteredItems state to the initial items
+      const filteredItems = items.filter((item) =>
+        item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+      ).sort((a, b) => a.itemNo - b.itemNo); // sort items by batch number  
     } catch (error) {
       console.error('Error fetching items:', error);
     }
@@ -91,37 +96,38 @@ export default function Placeshoporders() {
       return;
     }
   
-    const orderItemsMapped = orderItems.map((item) => ({
-      itemNo: item.itemNo,
-      itemName: item.itemName,
-      unitPrice: item.unitPrice,
-      batchNo: item.batchNo,
-      enterquantity: Math.min(item.quantity, item.enterquantity), // Use the minimum of the exist quantity and the enter quantity
-    }));
+    if (window.confirm("Are you sure you want to place this order? Yes or No")) {
+      const orderItemsMapped = orderItems.map((item) => ({
+        itemNo: item.itemNo,
+        itemName: item.itemName,
+        unitPrice: item.unitPrice,
+        batchNo: item.batchNo,
+        enterquantity: Math.min(item.quantity, item.enterquantity), // Use the minimum of the exist quantity and the enter quantity
+      }));
   
-    const order = {
-      shopName,
-      address,
-      orderDate: new Date().toISOString().slice(0, 10), // Include the current date
-      items: orderItemsMapped,
-    };
+      const order = {
+        shopName,
+        address,
+        orderDate: new Date().toISOString().slice(0, 10), // Include the current date
+        items: orderItemsMapped,
+      };
   
-    try {
-      const response = await axios.post('http://localhost:5000/add_shoporders', order);
-      console.log(response.data);
+      try {
+        const response = await axios.post('http://localhost:5000/add_shoporders', order);
+        console.log(response.data);
   
-      // Reset the form fields and state variables
-      setShopName('');
-      setAddress('');
-      setOrderItems([]);
-      alert('Order placed successfully');
-      window.location.reload();
-
-    } catch (error) {
-      console.error(error);
+        // Reset the form fields and state variables
+        setShopName('');
+        setAddress('');
+        setOrderItems([]);
+        window.location.reload();
+  
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
-
+  
   return (
     <div className="Placeshoporders">
       <div className='common10'>

@@ -25,7 +25,7 @@ const Nocharts = () => {
   return (
     <div>
       <h2>Top 3 Selling Items</h2>
-      <div className='ed' style={{justifyContent: 'center', fontSize: "20px"}}>
+      <div className='ed' style={{justifyContent: 'center', fontSize: "20px", textAlign: "left", marginLeft: "70px"}}>
       <ol>
         {topItems.map((item, index) => (
           <li key={index}>

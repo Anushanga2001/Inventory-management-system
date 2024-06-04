@@ -51,11 +51,11 @@ export default function Changepassword() {
     <div className='tr'>
     <div className='changepassword'>
             <Form onSubmit={handleSubmit}>
-                  <Link to="/Edit" style={{ marginLeft: '110%', marginBottom: '30px' }}>
-                      <Button variant="dark">Back</Button>
+                  <Link to="/Edit" style={{ marginLeft: '110%', marginBottom: '5px' }}>
+                      <Button variant="dark" style={{color: "yellow"}}>Back</Button>
                   </Link>
                 <Form.Group className="mb-4" controlId="username">
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label style={{color: "yellow", fontSize: "25px"}}>Username</Form.Label>
                     <Form.Control 
                         type="text" 
                         placeholder="Enter username"
@@ -65,7 +65,7 @@ export default function Changepassword() {
                     />
                 </Form.Group>
                 <Form.Group className="mb-4" controlId="password">
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label style={{color: "yellow", fontSize: "25px"}}>Password</Form.Label>
                     <Form.Control 
                         type="password" 
                         placeholder="Enter password"
@@ -75,7 +75,7 @@ export default function Changepassword() {
                     />
                 </Form.Group>
                 <Form.Group className="mb-4" controlId="confirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label style={{color: "yellow", fontSize: "25px"}}>Confirm Password</Form.Label>
                     <Form.Control 
                         type="password" 
                         placeholder="Confirm password"
@@ -84,7 +84,7 @@ export default function Changepassword() {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit">
+                <Button variant="dark" type="submit" style={{color: "yellow", marginTop: "10px", marginLeft: "45px"}}>
                     Change Password
                 </Button>
             </Form>

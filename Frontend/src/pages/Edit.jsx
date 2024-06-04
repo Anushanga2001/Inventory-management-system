@@ -41,11 +41,11 @@ export default function Edit() {
   return (
     <div className="edit-container"> {/* Add a container class */}
       <div className='combi'>
-        <Link to='/Changeselect' className="profile-link1"><b>Change password</b></Link>
+        <Link to='/Changeselect' className="profile-link1"><b>Change password</b></Link><br/>
         <Link to='/Updateprofile' className="profile-link1"><b>Update profile</b></Link>
       </div>
       <div className='signout'>
-        <button onClick={handleGoBack} className="custom-button01" style={{ width: '100px' }}>
+        <button onClick={handleGoBack} className="custom-button01" style={{ borderRadius: "10px", width: '150px', height: "40px" , backgroundColor: "black", color: "yellow", fontSize: "18px"}}>
           <b>Back</b>
         </button>
       </div>

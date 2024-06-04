@@ -24,7 +24,7 @@ const Totalstock = () => {
 
   return (
     <div>
-      <h3>Total Stock Value</h3>
+      <h3>Available Stock Value</h3>
       <p style={{fontSize: "25px"}}><b>{stockValue}</b></p>
     </div>
   );

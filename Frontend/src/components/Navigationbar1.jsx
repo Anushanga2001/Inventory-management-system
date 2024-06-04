@@ -74,7 +74,7 @@ export default function Navigationbar1() {
               className={`nav-link ${location.pathname === "/owner/Reports" ? "active" : ""
                 }`}
             >
-              <FontAwesomeIcon icon={faChartBar} /> Reports
+              <FontAwesomeIcon icon={faChartBar} /> DashBoard
             </Link>
           </li>
         </ul>
