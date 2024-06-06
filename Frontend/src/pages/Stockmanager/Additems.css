@@ -44,7 +44,7 @@
   /* to set image to the front rather than another class, we use this */
   z-index: 1;
   position: relative;
-  background-color: #615f474e;
+  background-color: #0000004a;
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: 100px;
@@ -79,7 +79,7 @@
 } */
 
 .topic002 {
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 20px;
   font-size: 50px;
   font-family:Arial, Helvetica, sans-serif;

@@ -52,11 +52,11 @@ function ShopOrders1() {
       <div className='re1'>
         <Table  striped bordered hover className='table002'>
           <thead>
-            <tr>
-              <th>OrderNo</th>
-              <th>Order Date</th> {/* Modify table header */}
-              <th>Shop Name</th>
-              <th>Address</th>
+            <tr style={{position:"sticky", top:"0"}}>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>OrderNo</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Order Date</th> {/* Modify table header */}
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Shop Name</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Address</th>
             </tr>
           </thead>
           <tbody>

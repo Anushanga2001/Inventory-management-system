@@ -38,14 +38,14 @@ export default function Addusers() {
       <div className='fge1'><center>USERS OF THE SYSTEM</center></div><br/>
       <table className="user-table">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>User Name</th>
-            <th>Date of Birth</th>
-            <th>Job Position</th>
-            <th>Actions</th>
+          <tr style={{position:"sticky", top:"0"}}>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>ID</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>First Name</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Last Name</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>User Name</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Date of Birth</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Job Position</th>
+            <th  style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Actions</th>
           </tr>
         </thead>
         <tbody>

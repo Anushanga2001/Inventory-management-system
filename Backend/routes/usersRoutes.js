@@ -52,5 +52,6 @@ router.get('/get_reports1', itemsController7.getreports1)
 router.get('/get_reports2', itemsController7.getreports2)
 router.get('/get_reports3', itemsController7.getreports3)
 router.get('/get_reports4', itemsController7.getreports4)
+router.get('/get_reports5', itemsController7.getreports5)
 
 module.exports = router;

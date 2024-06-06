@@ -21,7 +21,6 @@
   border-collapse: collapse;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
-  margin-top: 20px;
 }
 
 .c1 th, .c1 td {
@@ -53,4 +52,11 @@
   width: 90px;
   border-radius: 5px;
 }
+
+.action-button.edit5 {
+  color: rgb(0, 29, 251);
+  text-align: center;
+  width: fit-content;
+}
+
 

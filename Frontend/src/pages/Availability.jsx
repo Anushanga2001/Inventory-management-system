@@ -65,15 +65,15 @@ export default function Availability() {
       <div className="table00">
         <Table striped bordered hover className='c1'>
           <thead>
-            <tr>
-              <th>Item No</th>
-              <th>Batch No</th>
-              <th>Item Name</th>
-              <th>Unit Price</th>
-              <th>Quantity</th>
-              <th>Expire Date</th>
+            <tr style={{position:"sticky", top:"0"}}>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item No</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Batch No</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item Name</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Unit Price</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Quantity</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Expire Date</th>
               {jobPosition === 'stock manager' && (  // Add this line
-                <th>Action</th>
+                <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Action</th>
               )}
             </tr>
           </thead>
@@ -88,7 +88,7 @@ export default function Availability() {
                 <td>{formatDate(item.expireDate)}</td>
                 {jobPosition === 'stock manager' && (  // Add this line
                   <td>
-                    <Link to={`/stockmanager/${item.itemNo}/${item.batchNo}`} className="action-button edit">
+                    <Link to={`/stockmanager/${item.itemNo}/${item.batchNo}`} className="action-button edit5">
                       Edit
                     </Link>
                   </td>

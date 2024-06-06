@@ -23,7 +23,7 @@ const Totalstock = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div style={{marginTop: "50px"}}>
       <h3>Available Stock Value</h3>
       <p style={{fontSize: "25px"}}><b>{stockValue}</b></p>
     </div>

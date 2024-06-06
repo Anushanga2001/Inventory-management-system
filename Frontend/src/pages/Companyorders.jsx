@@ -53,10 +53,10 @@ export default function Companyorders() {
       <div className='table13'>
         <Table striped bordered hover className='table003'>
           <thead>
-            <tr>
-              <th><center>OrderNo</center></th>
-              <th><center>Date</center></th>
-              <th><center>Time</center></th>
+            <tr style={{position:"sticky", top:"0"}}>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}><center>OrderNo</center></th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}><center>Date</center></th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}><center>Time</center></th>
             </tr>
           </thead>
           <tbody>

@@ -74,11 +74,11 @@ export default function Notification() {
         <div className='cis1'>
         <Table striped bordered hover className='wwe1'>
           <thead>
-            <tr style={{fontSize: "20px"}}>
-              <th>Item No</th>
-              <th>Batch No</th>
-              <th>Item Name</th>
-              <th>Message</th>
+            <tr style={{fontSize: "20px", position:"sticky", top:"0"}}>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item No</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Batch No</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item Name</th>
+              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Message</th>
             </tr>
           </thead>
           <tbody>

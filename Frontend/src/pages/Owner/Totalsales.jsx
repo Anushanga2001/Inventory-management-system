@@ -27,11 +27,11 @@ const TotalSales = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{border: "1px solid black"}}>
-      <h3>Total Sales Value</h3>
-      <p style={{fontSize: "25px"}}><b>{totalSalesValue}</b></p><hr/>
-      <h3>Profit From the Sales</h3>
-      <p style={{fontSize: "25px"}}><b>{profit}</b></p>
+    <div style={{ border: "1px solid black" }}>
+      <h3>Last 30 Days Total Sales</h3>
+      <p style={{ fontSize: "25px" }}><b>{totalSalesValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p><hr />
+      <h3>Last 30 Days Profit From the Sales</h3>
+      <p style={{ fontSize: "25px" }}><b>{profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p>
     </div>
   );
 };

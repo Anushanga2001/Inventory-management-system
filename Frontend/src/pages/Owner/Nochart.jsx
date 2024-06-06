@@ -23,13 +23,13 @@ const Nocharts = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Top 3 Selling Items</h2>
-      <div className='ed' style={{justifyContent: 'center', fontSize: "20px", textAlign: "left", marginLeft: "70px"}}>
+    <div style={{marginTop: "30px"}}>
+      <h2>Last 30 Days Top 3 <br/>Selling Items</h2>
+      <div className='ed' style={{justifyContent: 'center', fontSize: "20px", textAlign: "left", marginLeft: "70px", marginTop: "20px"}}>
       <ol>
         {topItems.map((item, index) => (
-          <li key={index}>
-            {item.itemName} : <b>{item.totalQuantity} Packets</b> 
+          <li key={index} style={{marginTop: '10px'}}>
+            {item.itemName} = <b>{item.totalQuantity} Packets</b> 
           </li>
         ))}
       </ol>

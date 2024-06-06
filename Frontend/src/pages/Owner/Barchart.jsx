@@ -35,19 +35,13 @@ const Barchart = () => {
           const itemNames = data.map(item => item.itemName);
           const quantities = data.map(item => item.totalQuantity);
 
-          // Generate an array of colors for each item
-          const colors = [];
-          for (let i = 0; i < quantities.length; i++) {
-            colors.push(`rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.6)`);
-          }
-
           setChartData({
             labels: itemNames,
             datasets: [
               {
                 label: 'Item Quantities',
                 data: quantities,
-                backgroundColor: colors, // Use the generated array of colors
+                backgroundColor: 'rgba(0, 123, 255, 0.5)', // Use the desired blue color
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
               },
@@ -68,10 +62,10 @@ const Barchart = () => {
 
   return (
     <div>
-      <center><h2>Each Item Sales</h2></center>
+      <center><h2>Each Item Sales Within Last 30 Days</h2></center>
       <div className='ee1' style={{height: "500px", width: "500px"}}>
       <Bar
-        style={{height: "300px", width: "600px"}}
+        style={{height: "330px", width: "600px"}}
         data={chartData}
         options={{
           scales: {

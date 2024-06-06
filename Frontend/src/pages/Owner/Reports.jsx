@@ -6,13 +6,14 @@ import PieChart from '../Owner/Piechart';
 import Nochart from '../Owner/Nochart';
 import TotalSales from '../Owner/Totalsales';
 import TotalStock from '../Owner/Totalstock';
+import Barchart2 from '../Owner/Barchart2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
 const Reports = () => {
   return (
     <div className='report'>
-      <center><h2 style={{fontSize: "52px", marginTop: "20px", marginBottom: "20px"}}>Dashboard</h2></center>
+      <center><h2 style={{fontSize: "52px", marginBottom: "20px", width: "100%", backgroundColor: "rgba(0, 0, 0, 0.8)", height: "100px", color: "rgba(255, 255, 0, 0.8)", paddingTop: "20px"}}>Dashboard</h2></center>
       <div className='de1'>
         <div className='front'>
           <div className='w1'><Nochart /></div>
@@ -21,7 +22,8 @@ const Reports = () => {
         </div>
         <div className='back'>
           <div className='bar-chart-container'><BarChart /></div>
-          <div className='pie-chart-container'><PieChart /></div>
+          {/* <div className='pie-chart-container'><PieChart /></div> */}
+          <div className='pie-chart-container'><Barchart2 /></div>
         </div>
       </div>
     </div>
