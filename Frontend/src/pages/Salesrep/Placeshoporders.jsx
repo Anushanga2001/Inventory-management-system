@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import "./Placeshoporders.css";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { toast } from 'react-toastify'; // Assuming you use react-toastify for toasts
 
 export default function Placeshoporders() {
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([]);
   const [shopName, setShopName] = useState("");
   const [address, setAddress] = useState("");
-  const [orderItems, setOrderItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
   const [userID, setUserID] = useState('');
 
   useEffect(() => {
+    // Fetch items when component mounts
     fetchItems();
 
     // Retrieve userID from local storage when component mounts
@@ -25,35 +25,17 @@ export default function Placeshoporders() {
     }
   }, []);
 
-  useEffect(() => {
-    if (!searchTerm) {
-      setFilteredItems(items);
-      return;
-    }
-
-    // according to the item name  happen
-    const filtered = items.filter((item) =>
-      item.itemName.toLowerCase().includes(searchTerm.toLowerCase()));
-    setFilteredItems(filtered);
-  }, [searchTerm, items]);
-  
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  useEffect(() => {
-    fetchItems();
-  }, []);
-
   const fetchItems = async () => {
     try {
       const response = await axios.get('http://localhost:5000/get_items');
-      console.log(response.data);
-      setItems(response.data);
-      setFilteredItems(response.data);
+      setItems(response.data.map(item => ({ ...item, enterquantity: 0 }))); // Initialize enterquantity
     } catch (error) {
       console.error('Error fetching items:', error);
     }
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const handleShopNameChange = (event) => {
@@ -65,42 +47,49 @@ export default function Placeshoporders() {
   };
 
   const handleQuantityChange = (itemNo, batchNo, enterquantity) => {
-    const itemIndex = items.findIndex((item) => item.itemNo === itemNo && item.batchNo === batchNo);
-  
+    const updatedItems = [...items];
+    const itemIndex = updatedItems.findIndex((item) => item.itemNo === itemNo && item.batchNo === batchNo);
+
     if (itemIndex !== -1) {
-      const updatedItems = [...items];
       updatedItems[itemIndex] = {
         ...updatedItems[itemIndex],
-        enterquantity: parseInt(enterquantity),
+        enterquantity: parseInt(enterquantity) || 0, // Handle empty input as 0
       };
-  
-      const earlierBatchNumbers = items.filter((item) =>
-        item.itemNo === itemNo && item.batchNo < batchNo && item.quantity > 0
-      );
-  
-      const isValidQuantity = earlierBatchNumbers.every((item) =>
-        item.enterquantity <= item.quantity
-      );
-  
-      if (!isValidQuantity) {
-        alert(`Please enter valid quantities for earlier batch numbers before entering quantity for batch number ${batchNo}`);
-        return;
-      }
-  
+
+      // Check if the entered quantity exceeds available quantity for the current batch
       if (updatedItems[itemIndex].enterquantity > updatedItems[itemIndex].quantity) {
         alert(`The entered quantity for batch number ${batchNo} is greater than its existing quantity`);
+        updatedItems[itemIndex].enterquantity = 0;
+        setItems(updatedItems);
         return;
       }
-  
-      // Check if there are earlier batch numbers with non-zero quantity and automatically fill in the maximum possible quantity for the current batch number
-      const totalQuantityEntered = earlierBatchNumbers.reduce((acc, item) => acc + item.enterquantity, 0);
-      const remainingQuantity = updatedItems[itemIndex].quantity - totalQuantityEntered;
-      if (remainingQuantity > 0) {
-        updatedItems[itemIndex].enterquantity = remainingQuantity;
+
+      let alertTriggered = false;
+
+      // Automatically fill earlier batch numbers if the quantity is entered for a later batch
+      for (let i = 0; i < itemIndex; i++) {
+        if (updatedItems[i].itemNo === itemNo) {
+          if (updatedItems[i].enterquantity < updatedItems[i].quantity) {
+            alertTriggered = true;
+            updatedItems[i].enterquantity = Math.min(updatedItems[i].quantity, updatedItems[i].quantity); // Fill previous batch fully
+          }
+        }
       }
-  
+
+      if (alertTriggered) {
+        alert('Previous batches have been filled completely.');
+      }
+
+      // Allow editing of previous batches' quantities if the current batch quantity is reduced or cleared
+      for (let i = itemIndex - 1; i >= 0; i--) {
+        if (updatedItems[i].itemNo === itemNo && updatedItems[i].enterquantity > 0) {
+          if (updatedItems[itemIndex].enterquantity === 0) {
+            updatedItems[i].enterquantity = 0; // Reset previous batch quantity
+          }
+        }
+      }
+
       setItems(updatedItems);
-      setOrderItems(updatedItems);
     }
   };
   
@@ -145,13 +134,22 @@ export default function Placeshoporders() {
         console.log(response.data);
         setShopName('');
         setAddress('');
-        setOrderItems([]);
+        setItems([]); // Clear items
         window.location.reload();
       } catch (error) {
         console.error(error);
       }
     }
   };
+
+  const handleCancelClick = () => {
+    setShopName('');
+    setAddress('');
+    setSearchTerm('');
+    setItems(items.map(item => ({ ...item, enterquantity: 0 }))); // Reset enterquantity
+  };
+
+  const filteredItems = items.filter(item => item.itemName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <div className="Placeshoporders">
@@ -168,7 +166,7 @@ export default function Placeshoporders() {
       </div>
       <div className='content2'>
         {filteredItems.map((item) => (
-          <div className='item' key={item.itemNo && item.batchNo}>
+          <div className='item' key={`${item.itemNo}-${item.batchNo}`}>
             <h5>{item.itemName}</h5>
             <div className='image1'>
               <img src={"http://localhost:5000/uploads/" + item.itemImage} alt='image' />
@@ -177,10 +175,12 @@ export default function Placeshoporders() {
             <label>Quantity : <b>{item.quantity}</b></label>
             <label>
               Quantity : <b>
-                <input
+              <input
                   type="number"
                   className="no1"
-                  value={item.enterquantity}
+                  value={item.enterquantity || ''}
+                  onFocus={() => handleFocus(item.itemNo, item.batchNo)}
+                  onBlur={() => handleBlur(item.itemNo, item.batchNo)}
                   onChange={(event) => handleQuantityChange(item.itemNo, item.batchNo, event.target.value)}
                 />
               </b>
@@ -190,7 +190,7 @@ export default function Placeshoporders() {
       </div>
       <div className='bottom1'>
         <Button variant="success" style={{ width: '100px' }} onClick={handleConfirmClick}>CONFIRM</Button>
-        <Button variant="danger" style={{ marginLeft: '10px', width: '100px' }}>CANCEL</Button>
+        <Button variant="danger" style={{ marginLeft: '10px', width: '100px' }} onClick={handleCancelClick}>CANCEL</Button>
       </div>
     </div>
   );
