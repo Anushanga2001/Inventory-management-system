@@ -80,21 +80,29 @@
 }
 
 .input01 {
-    width: 100%;
-}
+        padding: 10px;
+        border: 1px solid rgb(10, 168, 120);
+        border-radius: 5px;
+        font-size: 20px;
+        width: 500px;
+        text-align: center;
+        margin-left: 50px;
+  }
+  
 
 .lab1 {
     display: flex;
-    width: 100%;	
-    white-space: nowrap;
-    margin-bottom: 20px;
-    text-align: left;
-    font-size: 30px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  font-size: 28px;
 }
 
 .btn21 {
     text-align: center; /* Center-align the buttons */
-    margin-top: -50px;
+    margin-top: -30px;
   }
   
   .btn21 Button {

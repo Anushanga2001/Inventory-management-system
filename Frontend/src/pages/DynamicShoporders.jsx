@@ -12,6 +12,7 @@ function DynamicShoporders() {
   const [orderDetails, setOrderDetails] = useState([]);
   const [shop, setShop] = useState([]);
   const [isSalesRep, setIsSalesRep] = useState(false);
+  const [userID, setUserID] = useState('');
 
   const downloadPDF = async () => {
     const input = document.getElementById('content-to-download');
@@ -37,7 +38,7 @@ function DynamicShoporders() {
       try {
         console.log(orderNo);
         const response = await axios.get(`http://localhost:5000/get_shoporder_details/${orderNo}`);
-        // console.log(response.data);
+        console.log(response.data);
         setOrderDetails(response.data);
       } catch (error) {
         console.log(error);
@@ -86,6 +87,7 @@ function DynamicShoporders() {
               <div className="shop-details2">
                 <p>Order No : <b>{item.orderNo}</b></p>
                 <p>Order Date : <b>{orderDate}</b></p>
+                <p>Sales rep ID : <b>{item.userID}</b></p>
               </div>
             </div>
           );
@@ -107,16 +109,19 @@ function DynamicShoporders() {
               <td><center>{item.itemName}</center></td>
               <td><center>{item.unitPrice}</center></td>
               <td><center>{item.quantity}</center></td>
-              <td><center>{item.unitPrice * item.quantity}</center></td>
+              <td><center>{(item.unitPrice * item.quantity).toFixed(2)}</center></td>
             </tr>
           ))}
+
           {/* Display the total of all total prices */}
+
           <tr>
             <td colSpan="4" style={{ textAlign: "right" }}><b>Total</b></td>
-            <td><center>{orderDetails.reduce((acc, cur) => acc + cur.unitPrice * cur.quantity, 0)}</center></td>
+            <td style={{ textAlign: 'center' }}>{orderDetails.reduce((acc, cur) => acc + cur.unitPrice * cur.quantity, 0).toFixed(2)}</td>
           </tr>
         </tbody>
-      </table> 
+      </table>
+
       {isSalesRep && (<center><h3 className='fr1'>THANK YOU!</h3></center>)}
       </div>
       {isSalesRep && (<button onClick={downloadPDF} className='btn77' style={{border:"2px solid black", fontFamily:"arial", width:"150px", color:"white", backgroundColor:"black", height:"40px"}}><b>PRINT BILL</b></button>)}

@@ -26,8 +26,8 @@ exports.addCompanyOrders = (req, res) => {
       const generatedOrderNo = result1.insertId;
 
       // Insert the order items into the company_orders_include table
-      const itemSql = 'INSERT INTO company_orders_include (orderNo, itemId, itemName, unitPrice, quantity) VALUES ?';
-      const itemValues = orderItems.map((item) => [generatedOrderNo, item.itemId, item.itemName, item.unitPrice, item.quantity]);
+      const itemSql = 'INSERT INTO company_orders_include (orderNo, itemId, itemName, unitPrice, quantity, userID) VALUES ?';
+      const itemValues = orderItems.map((item) => [generatedOrderNo, item.itemId, item.itemName, item.unitPrice, item.quantity, item.userID]);
       db.query(itemSql, [itemValues], (err, result2) => {
         if (err) {
           console.error('Error adding order items:', err);

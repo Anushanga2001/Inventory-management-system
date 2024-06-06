@@ -131,12 +131,12 @@ export default function Additems() {
         <h1 className='topic002'><b>ADD  EXIST  ITEM</b></h1>
           <form onSubmit={handleSubmit}>
           <div className='lab2'>
-            <label>Item No : </label>
+            <label>Item No  </label>
             <input
               key="itemNo"
               type="number"
               placeholder="Enter Item No"
-              className='input01'
+              className='input02'
               name="itemNo"
               value={formData.itemNo}
               onChange={handleChange}
@@ -145,12 +145,12 @@ export default function Additems() {
             />
             </div>
             <div className='lab2'>
-            <label>Item Name : </label>
+            <label>Item Name  </label>
             <input
               key="itemName"
               type="text"
               placeholder="Item Name"
-              className='input01'
+              className='input02'
               name="itemName"
               value={formData.itemName}
               readOnly
@@ -158,12 +158,12 @@ export default function Additems() {
             />
             </div>
             <div className='lab2'>
-            <label>Unit Price : </label>
+            <label>Unit Price  </label>
             <input
               key="unitPrice"
               type="text"
               placeholder="Unit Price"
-              className='input01'
+              className='input02'
               name="unitPrice"
               value={formData.unitPrice}
               onChange={handleChange}
@@ -171,12 +171,12 @@ export default function Additems() {
             />
             </div>
             <div className='lab2'>
-            <label>Quantity : </label>
+            <label>Quantity  </label>
             <input
               key="quantity"
               type="number"
               placeholder="Quantity"
-              className='input01'
+              className='input02'
               name="quantity"
               value={formData.quantity}
               onChange={handleChange}
@@ -184,11 +184,11 @@ export default function Additems() {
             />
             </div>
             <div className='lab2'>
-            <label>Expire Date : </label>
+            <label>Expire Date  </label>
             <input
               key="expireDate"
               type="date"
-              className='input01'
+              className='input02'
               name="expireDate"
               value={formData.expireDate}
               onChange={handleChange}
@@ -196,32 +196,33 @@ export default function Additems() {
             />
             </div>
             <div className='lab2'>
-              <label htmlFor="noOfQuantity">Notification comes quantity :</label>
+              <label htmlFor="noOfQuantity">Threshold value </label>
               <input
                 type="number"
                 id="noOfQuantity"
                 placeholder='Enter quantity'
                 name="noOfQuantity"
-                className='input01'
+                className='input02'
                 value={formData.noOfQuantity}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className='lab2'>
-              <label>Item Image : </label>
+              <label>Item Image  </label>
               <div>
                 <input
                   key="itemImage"
                   type="file"
-                  className='input01'
+                  className='input02'
                   name="itemImage"
                   onChange={handleImageChange}
+                  style={{ marginLeft: '-170px' }}
                 />
                 {itemImageUrl && <img src={itemImageUrl} alt="Selected" className='preview-image' />}
               </div>
             </div>
-            <div className='btn21'>
+            <div className='btn22' style={{ marginTop: '-20px' }}>
               <center>
                 <Button variant="success" type="submit" style={{ width: '150px' }} onClick={() => { handleSubmit(); notify(); !isFormValid(); }}>CONFIRM</Button>
                 <Button variant="danger" type="button" onClick={resetForm} style={{ width: '150px' }}>CANCEL</Button>

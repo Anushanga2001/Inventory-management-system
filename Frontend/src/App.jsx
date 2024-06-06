@@ -21,6 +21,7 @@ import Additems from './pages/Stockmanager/Additems';
 import Addnewitems from './pages/Stockmanager/Addnewitems';
 import Placecompanyorders from './pages/Placecompanyorders';
 import Notification from './pages/Stockmanager/Notification';
+import Editc1 from './pages/Editc1';
 
 // 3rd navigation bar pages
 import Placeshoporders from './pages/Salesrep/Placeshoporders';
@@ -69,6 +70,7 @@ function App() {
             <Route path="Reports" element={<Reports />} />
             <Route path="Register" element={<Register />} />
             <Route path="ed/:userID" element={<Editc />} />
+
           </Route>
 
           <Route path="/stockmanager" element={<Stockmanager />}>
@@ -82,6 +84,7 @@ function App() {
             <Route path="add/:orderno" element={<Dynamiccompanyorders />} />
             <Route path="Companyorders2" element={<Companyorders2 />} />
             <Route path="Notification" element={<Notification />} />
+            <Route path=":itemNo/:batchNo" element={<Editc1 />} />
           </Route>
 
           <Route path="/salesrep" element={<Salesrep />}>

@@ -1,7 +1,7 @@
 const db = require('../config/database');
 
 exports.addShopOrders = (req, res) => {
-  const { orderNo, shopName, address, orderDate, items } = req.body; // Include orderDate
+  const { orderNo, shopName, address, orderDate, userID, items } = req.body; // Include orderDate
 
   // Begin a database transaction
   db.beginTransaction((err) => {
@@ -12,8 +12,8 @@ exports.addShopOrders = (req, res) => {
     }
 
     // Insert the order into the shop_orders1 table
-    const orderSql = 'INSERT INTO shop_orders1 (orderNo, shopName, address, orderDate) VALUES (?, ?, ?, ?)'; // Include orderDate
-    db.query(orderSql, [orderNo, shopName, address, orderDate], (err, result1) => {
+    const orderSql = 'INSERT INTO shop_orders1 (orderNo, shopName, address, orderDate, userID) VALUES (?, ?, ?, ?, ?)'; // Include orderDate
+    db.query(orderSql, [orderNo, shopName, address, orderDate, userID], (err, result1) => {
       if (err) {
         console.error('Error adding order:', err);
         db.rollback(() => {

@@ -162,3 +162,33 @@ exports.getItem040 = (req, res) => {
     res.json(result);
   });
 };
+
+// get items to edit
+exports.geteditItem = (req, res) => {
+  const { itemNo, batchNo } = req.params;
+  const sql = `SELECT itemName, unitPrice, quantity FROM items01 WHERE itemNo = ? AND batchNo = ?`;
+  db.query(sql, [itemNo, batchNo], (err, result) => {
+    if (err) {
+      console.error('Error fetching items:', err);
+      res.status(500).json({ error: 'Error fetching items' });
+      return;
+    }
+    const x = result[0];
+    res.json(x);
+  });
+};
+
+// update item
+exports.updateItem = (req, res) => {
+  const { itemNo, batchNo } = req.params;
+  const { itemName, unitPrice, quantity } = req.body;
+  const sql = `UPDATE items01 SET itemName = ?, unitPrice = ?, quantity = ? WHERE itemNo = ? AND batchNo = ?`;
+  db.query(sql, [itemName, unitPrice, quantity, itemNo, batchNo], (err, result) => {
+    if (err) {
+      console.error('Error updating item:', err);
+      res.status(500).json({ error: 'Error updating item' });
+      return;
+    }
+    res.json({ message: 'Item updated successfully' });
+  });
+};

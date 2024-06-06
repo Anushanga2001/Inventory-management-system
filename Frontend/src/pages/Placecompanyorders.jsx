@@ -9,6 +9,7 @@ export default function Placecompanyorders() {
   const [orderDate, setOrderDate] = useState('');
   const [orderTime, setOrderTime] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [userID, setUserID] = useState('');
 
   useEffect(() => {
     const currentDate = new Date().toISOString().split('T')[0];
@@ -31,6 +32,15 @@ export default function Placecompanyorders() {
     };
 
     fetchItems();
+
+    // Retrieve userID from localStorage
+    const userID = localStorage.getItem('userID');
+    if (userID) {
+      setUserID(userID);
+    } else {
+      console.log('User ID not found in localStorage');
+      toast.error('User ID not found. Please log in again.');
+    }
   }, []);
 
   const handleQuantityChange = (index, event) => {
@@ -47,37 +57,48 @@ export default function Placecompanyorders() {
   };
 
   const handleOrderConfirmation = async () => {
+    if (!userID) {
+      toast.error("User ID is missing. Please log in again.");
+      return;
+    }
+  
     const hasItems = items.some(item => item.quantity > 0);
-
+  
     if (!hasItems) {
       toast.error("Please add at least one item to the order.");
       return;
     }
-
-    try {
-      const orderItems = items.filter(item => item.quantity > 0).map(item => ({
-        itemId: item.id,
-        itemName: item.name,
-        unitPrice: item.unitPrice,
-        quantity: item.quantity
-      }));
-
-      const response = await axios.post("http://localhost:5000/add_companyorders", {
-        orderDate,
-        orderTime,
-        orderItems
-      });
-
-      toast.success("Order placed successfully.");
-
-      // Reset the form
-      const clearedItems = items.map(item => ({ ...item, quantity: '' }));
-      setItems(clearedItems);
-      setOrderDate('');
-      setOrderTime('');
-    } catch (error) {
-      toast.error("Failed to place the order.");
-      console.error(error);
+  
+    // Add an alert prompt before placing the order
+    if (window.confirm("Do you want to place the order?")) {
+      try {
+        const orderItems = items.filter(item => item.quantity > 0).map(item => ({
+          itemId: item.id,
+          itemName: item.name,
+          unitPrice: item.unitPrice,
+          quantity: item.quantity,
+          userID: userID
+        }));
+  
+        console.log(orderItems, "hi");
+  
+        const response = await axios.post("http://localhost:5000/add_companyorders", {
+          orderDate,
+          orderTime,
+          orderItems
+        });
+  
+        toast.success("Order placed successfully.");
+  
+        // Reset the form
+        const clearedItems = items.map(item => ({ ...item, quantity: '' }));
+        setItems(clearedItems);
+        setOrderDate('');
+        setOrderTime('');
+      } catch (error) {
+        toast.error("Failed to place the order.");
+        console.error(error);
+      }
     }
   };
 

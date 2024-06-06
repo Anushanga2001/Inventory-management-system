@@ -3,11 +3,14 @@ import './Availability.css'
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Availability() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  const jobPosition = localStorage.getItem('jobPosition');
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -49,23 +52,6 @@ export default function Availability() {
     setSearchTerm(event.target.value);
   };
 
-  // Function to handle delete button click
-  const handleDelete = async (itemNo, batchNo) => {
-    if (window.confirm("Are you sure you want to delete this item? Yes or No")) {
-      try {
-        const response = await axios.delete(`http://localhost:5000/delete_items/${itemNo}/${batchNo}`);
-        if (response.status === 200) {
-          // Item deleted successfully, update the state
-          const updatedItems = items.filter((item) => item.itemNo !== itemNo || item.batchNo !== batchNo);
-          setItems(updatedItems);
-          setFilteredItems(updatedItems);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };  
-
   return (
     <div className='Availability1'>
       <div className='hh1'>
@@ -86,7 +72,9 @@ export default function Availability() {
               <th>Unit Price</th>
               <th>Quantity</th>
               <th>Expire Date</th>
-              <th>Action</th>
+              {jobPosition === 'stock manager' && (  // Add this line
+                <th>Action</th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -96,18 +84,15 @@ export default function Availability() {
                 <td>{item.batchNo}</td>
                 <td>{item.itemName}</td>
                 <td>{item.unitPrice}</td>
-                <td>{item.quantity}</td>
+                <td>{item.quantity === 0 ? <span style={{ fontSize: '15px', fontWeight: 'bold', color: 'red' }}>Empty Stock</span> : item.quantity}</td>
                 <td>{formatDate(item.expireDate)}</td>
-                <td>
-                  <button
-                  style={{ marginTop: '0px' }}
-                    type="button"
-                    className="action-button-delete1"
-                    onClick={() => handleDelete(item.itemNo, item.batchNo)}
-                  >
-                    Delete
-                  </button>
-                </td>
+                {jobPosition === 'stock manager' && (  // Add this line
+                  <td>
+                    <Link to={`/stockmanager/${item.itemNo}/${item.batchNo}`} className="action-button edit">
+                      Edit
+                    </Link>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

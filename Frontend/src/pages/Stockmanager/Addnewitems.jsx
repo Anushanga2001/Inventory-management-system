@@ -118,8 +118,8 @@ export default function Addnewitems() {
         <h1 className='topic003'><b>ADD  NEW  ITEM</b></h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
-        <div className='lab10'>
-          <label htmlFor="itemName">Item Name :</label>
+        <div className='lab1'>
+          <label htmlFor="itemName">Item Name </label>
           <input
             type="text"
             id="itemName"
@@ -131,7 +131,7 @@ export default function Addnewitems() {
           />
         </div>
         <div className='lab1'>
-          <label htmlFor="unitPrice">Unit Price :</label>
+          <label htmlFor="unitPrice">Unit Price </label>
           <input
             type="number"
             id="unitPrice"
@@ -143,7 +143,7 @@ export default function Addnewitems() {
           />
         </div>
         <div className='lab1'>
-          <label htmlFor="quantity">Quantity :</label>
+          <label htmlFor="quantity">Quantity </label>
           <input
             type="number"
             id="quantity"
@@ -155,7 +155,7 @@ export default function Addnewitems() {
           />
         </div>
         <div className='lab1'>
-          <label htmlFor="expireDate">Expire Date :</label>
+          <label htmlFor="expireDate">Expire Date </label>
           <input
             type="date"
             id="expireDate"
@@ -167,7 +167,7 @@ export default function Addnewitems() {
           />
         </div>
         <div className='lab1'>
-          <label htmlFor="noOfQuantity">Notification comes quantity :</label>
+          <label htmlFor="noOfQuantity">Threshold value </label>
           <input
             type="number"
             id="noOfQuantity"
@@ -180,7 +180,7 @@ export default function Addnewitems() {
           />
         </div>
         <div className='lab1'>
-          <label htmlFor="itemImage">Item Image :</label>
+          <label htmlFor="itemImage">Item Image </label>
             <input
               type="file"
               id="itemImage"

@@ -12,7 +12,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement);
 const Reports = () => {
   return (
     <div className='report'>
-      <center><h2 style={{fontSize: "52px", marginTop: "20px", marginBottom: "20px"}}>Inventory Analysis</h2></center>
+      <center><h2 style={{fontSize: "52px", marginTop: "20px", marginBottom: "20px"}}>Dashboard</h2></center>
       <div className='de1'>
         <div className='front'>
           <div className='w1'><Nochart /></div>

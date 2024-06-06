@@ -67,19 +67,20 @@
   margin-bottom: 50px;
 }
 
-.input01 {
+/* .input01 {
   padding: 10px;
   border: 1px solid rgb(10, 168, 120);
   border-radius: 5px;
   margin-bottom: 20px;
   font-size: 20px;
-  margin-left: 30px;
-  text-align: left;
-}
+  margin-right: 5px;
+  text-align: center;
+  width: 20px;
+} */
 
 .topic002 {
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 50px;
   font-family:Arial, Helvetica, sans-serif;
   color: rgb(124, 141, 2);
@@ -87,26 +88,46 @@
 
 .lab2 {
   display: flex;
-  width: 100%;	
-  white-space: nowrap;
-  margin-bottom: 10px;
-  text-align: left;
-  font-size: 30px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.lab2 div {
-  display: flex;
-  align-items: center;
+.lab2 label {
+  font-size: 28px;
+  font-weight: bold;
+  width: 300px;
+  text-align: left;
+}
+
+.input02 {
+  padding: 10px;
+  border: 1px solid rgb(10, 168, 120);
+  border-radius: 5px;
+  font-size: 20px;
+  width: 500px;
+  text-align: center;
 }
 
 .lab2 input[type="file"] {
-  margin-right: 10px;
+  margin-right: 7px;
 }
 
 .preview-image {
   width: 0px;
   height: 0px;
   object-fit: cover;
+}
+
+
+.btn22 {
+  text-align: center; /* Center-align the buttons */
+}
+
+.btn22 Button {
+  margin-right: 10px; /* Add margin-right to create space between the buttons */
 }
 
 

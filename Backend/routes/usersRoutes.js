@@ -10,7 +10,6 @@ const itemsController5 = require('../controllers/handleshoporders');
 const itemsController6 = require('../controllers/notification');
 const itemsController7 = require('../controllers/Reports');
 
-
 router.post('/add_user', usersController.addUser);
 router.get('/get_users', usersController.getUsers);
 router.get('/get_user/:userID', usersController.getUser);
@@ -26,10 +25,14 @@ router.post('/add_item', itemsController2.addItem);
 router.post('/add_item00', itemsController2.addItem00);
 router.get('/get_itemss', itemsController2.getItems01);
 router.get('/gets_item/:itemName', itemsController2.getsItems);
-router.get('/get_items/:ItemNo', itemsController2.getItem)
+router.get('/get_items/:ItemNo', itemsController2.getItem);
 router.get('/get_items', itemsController2.getItems90);
 router.get('/get_item040', itemsController2.getItem040);
 router.delete('/delete_items/:itemNo/:batchNo', itemsController2.deleteItem);
+
+// get items to edit
+router.get('/get_itemd/:itemNo/:batchNo', itemsController2.geteditItem);
+router.put('/update_item/:itemNo/:batchNo', itemsController2.updateItem);
 
 router.post('/add_companyorders', itemsController3.addCompanyOrders);
 router.get('/get_companyorders', itemsController3.getCompanyOrders);
