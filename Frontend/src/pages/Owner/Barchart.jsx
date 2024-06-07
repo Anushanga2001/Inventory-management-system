@@ -65,7 +65,6 @@ const Barchart = () => {
       <center><h2>Each Item Sales Within Last 30 Days</h2></center>
       <div className='ee1' style={{height: "500px", width: "500px"}}>
       <Bar
-        style={{height: "330px", width: "600px"}}
         data={chartData}
         options={{
           scales: {

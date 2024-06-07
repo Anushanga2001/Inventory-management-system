@@ -9,7 +9,8 @@ export default function Editc1() {
   const [item, setItem] = useState({
     itemName: '',
     unitPrice: '',
-    quantity: ''
+    quantity: '',
+    expireDate: '',
   });
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function Editc1() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!item.itemName || !item.unitPrice || item.quantity === '') {
+    if (!item.itemName || !item.unitPrice || item.quantity === '' || !item.expireDate) {
         alert('Please fill out all fields.');
         return;
       }
@@ -63,6 +64,10 @@ export default function Editc1() {
         <div>
           <label className='sq1'>Quantity :</label>
           <input type="text" name="quantity" value={item.quantity} onChange={handleChange} /> 
+        </div>
+        <div>
+          <label className='sq1'>Expire Date :</label>
+          <input type="date" name="expireDate" value={item.expireDate} onChange={handleChange} />
         </div>
         <button type="submit">Update</button>
       </form>

@@ -88,7 +88,7 @@ export default function Placecompanyorders() {
           orderItems
         });
   
-        toast.success("Order placed successfully.");
+        window.location.reload();
   
         // Reset the form
         const clearedItems = items.map(item => ({ ...item, quantity: '' }));

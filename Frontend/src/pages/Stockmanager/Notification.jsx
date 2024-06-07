@@ -19,9 +19,7 @@ export default function Notification() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response = await axios.get("http://localhost:5000/get_item040");
-
         const itemsWithMessage = response.data.map(item => {
           let message = '';
           if (item.quantity === 0) {
@@ -35,9 +33,7 @@ export default function Notification() {
         });        
 
         setItems(itemsWithMessage);
-
         setNewNotifications(true);
-
       } catch (error) {
         console.error(error);
       }
@@ -49,7 +45,11 @@ export default function Notification() {
 
     // WebSocket event handlers
     const handleNewNotification = (newItem) => {
-      setItems(prevItems => [...prevItems, { ...newItem, message: 'expire date is close' }]);
+      const itemWithMessage = {
+        ...newItem,
+        message: newItem.quantity === 0 ? 'Empty stock' : (newItem.quantity < newItem.noOfQuantity ? 'Less stock' : 'Expire date is close')
+      };
+      setItems(prevItems => [itemWithMessage, ...prevItems]);
       setNewNotifications(true);
     };
 
@@ -74,11 +74,11 @@ export default function Notification() {
         <div className='cis1'>
         <Table striped bordered hover className='wwe1'>
           <thead>
-            <tr style={{fontSize: "20px", position:"sticky", top:"0"}}>
-              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item No</th>
-              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Batch No</th>
-              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Item Name</th>
-              <th style={{color: "rgba(255, 255, 0, 0.8)", backgroundColor: "rgba(0, 0, 0, 0.8)"}}>Message</th>
+            <tr style={{fontSize: "20px"}}>
+              <th>Item No</th>
+              <th>Batch No</th>
+              <th>Item Name</th>
+              <th>Message</th>
             </tr>
           </thead>
           <tbody>
