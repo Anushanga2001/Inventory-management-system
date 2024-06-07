@@ -27,9 +27,9 @@ const TotalSales = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{ border: "1px solid black" }}>
+    <div style={{ border: "2px solid black", backgroundColor: "rgba(0, 123, 255, 0.4)", color: "black",borderRadius: "20px", marginTop: "5px", height: "250px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
       <h3>Last 30 Days Total Sales</h3>
-      <p style={{ fontSize: "25px" }}><b>{totalSalesValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p><hr />
+      <p style={{ fontSize: "25px" }}><b>{totalSalesValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p><hr/>
       <h3>Last 30 Days Profit From the Sales</h3>
       <p style={{ fontSize: "25px" }}><b>{profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p>
     </div>

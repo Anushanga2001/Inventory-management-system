@@ -23,9 +23,10 @@ const Nocharts = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{marginTop: "30px"}}>
-      <h2>Last 30 Days Top 3 <br/>Selling Items</h2>
-      <div className='ed' style={{justifyContent: 'center', fontSize: "20px", textAlign: "left", marginLeft: "70px", marginTop: "20px"}}>
+    <div style={{border: "2px solid black", marginLeft: "50px", marginRight: "50px", borderRadius: "20px",
+    marginTop: "5px", height: "250px", alignItems: "center", backgroundColor: "rgba(0, 123, 255, 0.4)", color: "black"}}>
+      <h2 style={{marginTop: "20px", color: "black"}}>Last 30 Days Top 3 <br/>Selling Items</h2>
+      <div className='ed' style={{justifyContent: 'center', fontSize: "20px", width: "400px", textAlign: "left", marginLeft: "30px", marginRight: "30px", marginTop: "20px"}}>
       <ol>
         {topItems.map((item, index) => (
           <li key={index} style={{marginTop: '10px'}}>
