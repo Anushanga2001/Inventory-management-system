@@ -9,6 +9,7 @@ const itemsController4 = require('../controllers/displayitems');
 const itemsController5 = require('../controllers/handleshoporders');
 const itemsController6 = require('../controllers/notification');
 const itemsController7 = require('../controllers/Reports');
+const itemsController8 = require('../controllers/Return');
 
 router.post('/add_user', usersController.addUser);
 router.get('/get_users', usersController.getUsers);
@@ -53,5 +54,8 @@ router.get('/get_reports2', itemsController7.getreports2)
 router.get('/get_reports3', itemsController7.getreports3)
 router.get('/get_reports4', itemsController7.getreports4)
 router.get('/get_reports5', itemsController7.getreports5)
+
+// return handling
+router.post('/add_return', itemsController8.addReturn);
 
 module.exports = router;

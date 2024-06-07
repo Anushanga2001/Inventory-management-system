@@ -26,6 +26,7 @@ import Editc1 from './pages/Editc1';
 // 3rd navigation bar pages
 import Placeshoporders from './pages/Salesrep/Placeshoporders';
 import Map from './pages/Salesrep/Map';
+import Returnpage from './pages/Returninclude';
 
 // common pages
 import Edit from './pages/Edit';
@@ -92,6 +93,7 @@ function App() {
             <Route path="Shoporders" element={<Shoporders />} />
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
             <Route path="Map" element={<Map />} />
+            <Route path="Returnpage" element={<Returnpage />} />
           </Route>
 
          </Routes>

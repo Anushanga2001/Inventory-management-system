@@ -59,6 +59,15 @@ export default function Navigationbar3() {
               <FontAwesomeIcon icon={faMapMarkerAlt} /> Map
             </Link>
           </li>
+          <li className="nav-item2">
+            <Link
+              to="/salesrep/Returnpage"
+              className={`nav-link ${location.pathname === "/salesrep/Returnpage" ? "active" : ""
+                }`}
+            >
+              <FontAwesomeIcon icon={faMapMarkerAlt} /> Returns
+            </Link>
+          </li>
         </ul>
       </Nav>
       <div className='c3'>

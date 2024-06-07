@@ -61,7 +61,7 @@ const Barchart = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div style={{backgroundColor: "black", height: "fit-content", color: "white"}}>
       <center><h2>Each Item Sales Within Last 30 Days</h2></center>
       <div className='ee1' style={{height: "500px", width: "500px", marginTop: "30px"}}>
       <Bar
