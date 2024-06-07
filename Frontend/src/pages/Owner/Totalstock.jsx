@@ -23,8 +23,8 @@ const Totalstock = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{marginTop: "50px", border: "1px solid black", height: "250px", borderRadius: "20px",marginRight: "50px", marginLeft: "50px",marginTop: "5px", 
-    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "rgba(255, 255, 0, 0.5)", color: "black"}}>
+    <div style={{  height: "250px", borderRadius: "20px",marginRight: "50px", marginLeft: "50px", marginTop: "5px", 
+    display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "rgba(51, 51, 51, 0.1)", color: "black"}}>
       <h3>Available Stock Value</h3>
       <p style={{fontSize: "25px"}}><b>{stockValue}</b></p>
     </div>

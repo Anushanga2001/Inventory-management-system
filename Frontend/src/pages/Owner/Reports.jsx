@@ -13,7 +13,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement);
 const Reports = () => {
   return (
     <div className='report'>
-      <center><h2 style={{fontSize: "52px", marginBottom: "20px", width: "100%", backgroundColor: "rgba(0, 0, 0, 0.8)", height: "100px", color: "rgba(255, 255, 0, 0.8)", paddingTop: "20px"}}>Dashboard</h2></center>
+      <center><h2 style={{fontSize: "52px",  width: "100%", backgroundColor: "rgba(0, 0, 0, 0.8)", height: "100%", color: "rgba(255, 255, 0, 0.8)", paddingTop: "20px"}}>Dashboard</h2></center>
       <div className='de1'>
         <div className='front'>
           <div className='w1'><Nochart /></div>

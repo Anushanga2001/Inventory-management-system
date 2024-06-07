@@ -62,7 +62,8 @@ exports.addItem00 = (req, res) => {
     }
 
     const { itemNo, itemName, unitPrice, quantity, expireDate, noOfQuantity } = req.body;
-    const itemImage = req.file ? req.file.filename : ''; // Set itemImage to an empty string if no file is uploaded
+    const itemImage = req.file ? req.file.filename : ''; 
+    // Set itemImage to an empty string if no file is uploaded
 
     // SQL query to get the current highest batchNo for the given itemNo
     const getMaxBatchNoSql = 'SELECT MAX(batchNo) AS maxBatchNo FROM items01 WHERE itemNo = ?';
@@ -143,13 +144,14 @@ exports.getsItems = (req, res) => {
       return;
     }
     if (result.length > 0) {
-      res.json(result[0]); // return the first matching item
+      res.json(result[0]); 
     } else {
-      res.status(404).json(); // return a 404 error if no matching item is found
+      res.status(404).json(); 
     }
   });
 };
 
+// notification
 exports.getItem040 = (req, res) => {
   const sql = `SELECT itemNo, batchNo, itemName, expireDate, quantity, noOfQuantity FROM items01 
   WHERE ( expireDate between CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 60 DAY)) OR (quantity < noOfQuantity  AND quantity >= 0)`;

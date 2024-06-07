@@ -23,8 +23,7 @@ const Nocharts = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div style={{border: "1px solid black", marginLeft: "50px", marginRight: "50px", borderRadius: "20px",
-    marginTop: "5px", height: "250px", alignItems: "center", backgroundColor: "rgba(0, 255, 123, 0.5)", color: "black"}}>
+    <div style={{backgroundColor: "rgba(51, 51, 51, 0.1)", color: "black",borderRadius: "20px",marginLeft: "50px", marginTop: "5px", height: "250px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
       <h2 style={{marginTop: "20px", color: "black"}}>Last 30 Days Top 3 <br/>Selling Items</h2>
       <div className='ed' style={{justifyContent: 'center', fontSize: "20px", width: "400px", textAlign: "left", marginLeft: "30px", marginRight: "30px", marginTop: "20px"}}>
       <ol>

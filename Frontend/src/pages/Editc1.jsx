@@ -17,15 +17,22 @@ export default function Editc1() {
     const fetchItem = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/get_itemd/${itemNo}/${batchNo}`);
-        setItem(response.data);
-        console.log(response.data);
+        const fetchedItem = response.data;
+
+        // Ensure the date is in YYYY-MM-DD format
+        if (fetchedItem.expireDate) {
+          fetchedItem.expireDate = new Date(fetchedItem.expireDate).toISOString().split('T')[0];
+        }
+
+        setItem(fetchedItem);
+        console.log(fetchedItem);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchItem();
-  }, [itemNo, batchNo]); // Added missing dependencies
+  }, [itemNo, batchNo]);
 
   const handleChange = (e) => {
     setItem({ ...item, [e.target.name]: e.target.value });
@@ -35,9 +42,9 @@ export default function Editc1() {
     e.preventDefault();
 
     if (!item.itemName || !item.unitPrice || item.quantity === '' || !item.expireDate) {
-        alert('Please fill out all fields.');
-        return;
-      }
+      alert('Please fill out all fields.');
+      return;
+    }
 
     try {
       await axios.put(`http://localhost:5000/update_item/${itemNo}/${batchNo}`, item);
@@ -55,15 +62,15 @@ export default function Editc1() {
       <form className="edit-user-form" onSubmit={handleSubmit}>
         <div>
           <label className='sq1'>Item Name :</label>
-          <input type='text' name='itemName' value={item.itemName} onChange={handleChange} /> 
+          <input type='text' name='itemName' value={item.itemName} onChange={handleChange} />
         </div>
         <div>
           <label className='sq1'>Unit Price:</label>
-          <input type="text" name="unitPrice" value={item.unitPrice} onChange={handleChange} /> 
+          <input type="text" name="unitPrice" value={item.unitPrice} onChange={handleChange} />
         </div>
         <div>
           <label className='sq1'>Quantity :</label>
-          <input type="text" name="quantity" value={item.quantity} onChange={handleChange} /> 
+          <input type="text" name="quantity" value={item.quantity} onChange={handleChange} />
         </div>
         <div>
           <label className='sq1'>Expire Date :</label>

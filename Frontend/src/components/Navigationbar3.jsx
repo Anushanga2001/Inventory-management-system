@@ -3,7 +3,7 @@ import './Navigationbar3.css'; // Update the CSS file path
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faShoppingCart, faSignOutAlt, faEdit, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'; // Adjust icons as needed
+import { faCartPlus, faShoppingCart, faSignOutAlt, faEdit, faMapMarkerAlt, faUndo } from '@fortawesome/free-solid-svg-icons'; // Adjust icons as needed
 
 export default function Navigationbar3() {
   const navigate = useNavigate();
@@ -62,10 +62,9 @@ export default function Navigationbar3() {
           <li className="nav-item2">
             <Link
               to="/salesrep/Returnpage"
-              className={`nav-link ${location.pathname === "/salesrep/Returnpage" ? "active" : ""
-                }`}
+              className={`nav-link ${location.pathname === "/salesrep/Returnpage" ? "active" : ""}`}
             >
-              <FontAwesomeIcon icon={faMapMarkerAlt} /> Returns
+              <FontAwesomeIcon icon={faUndo} /> Returns
             </Link>
           </li>
         </ul>

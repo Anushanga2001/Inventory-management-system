@@ -28,6 +28,7 @@ router.get('/get_itemss', itemsController2.getItems01);
 router.get('/gets_item/:itemName', itemsController2.getsItems);
 router.get('/get_items/:ItemNo', itemsController2.getItem);
 router.get('/get_items', itemsController2.getItems90);
+// notification
 router.get('/get_item040', itemsController2.getItem040);
 router.delete('/delete_items/:itemNo/:batchNo', itemsController2.deleteItem);
 

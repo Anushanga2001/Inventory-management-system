@@ -38,9 +38,9 @@ function BarChart2() {
   }, []);
 
   return (
-    <div id="chart-container" style={{backgroundColor: "black"}}>
+    <div id="chart-container" style={{backgroundColor: "rgba(51, 51, 51, 0.1)", borderRadius: "10px", color: "white", height: "420px", width: "700px", padding: "10px", paddingTop: "40px"}}>
       <center><h2>Each Item Available Quantity in the Stock</h2></center>
-      <div style={{height: "500px", width: "500px"}}>
+      <div style={{height: "fit-content"}}>
       <canvas id="chart"></canvas>
       </div>
     </div>
