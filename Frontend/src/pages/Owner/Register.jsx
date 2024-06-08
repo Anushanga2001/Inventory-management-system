@@ -60,7 +60,7 @@ export default function Register() {
 
   return (
     <div className='register'>
-      <h2 className="form-heading">REGISTER</h2>
+      <h2 className="form-heading">REGISTER USERS</h2>
       <form onSubmit={handleSubmit} className="user-form">
         <div className="form-group">
           <label htmlFor="firstName">First Name:</label>
@@ -132,7 +132,8 @@ export default function Register() {
             <option value="sales representative">Sales Representative</option>
           </select>
         </div>
-        <center><Button variant="primary" type="submit" className="submit-button" style={{ marginTop: '20px', padding: '10px 20px', fontSize: '20px', backgroundColor: "black"}}>Submit</Button></center>
+        <center><Button variant="primary" type="submit" className="submit-button" 
+        style={{ color: 'yellow', marginTop: '20px', padding: '10px 20px', width: '200px', fontSize: '20px', backgroundColor: "black"}}>Submit</Button></center>
       </form>
     </div>
   );

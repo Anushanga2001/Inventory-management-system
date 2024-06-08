@@ -1,7 +1,7 @@
 const db = require('../config/database');
 const upload = require('../multer');
 
-// backend for add new items
+// add new items
 exports.addItem = (req, res) => {
   upload.single('itemImage')(req, res, (err) => {
     if (err) {
