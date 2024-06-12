@@ -84,7 +84,7 @@ export default function Changepassword() {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit" style={{color: "yellow", marginTop: "10px", marginLeft: "45px"}}>
+                <Button variant="dark" type="submit" style={{color: "yellow",width: "200px", marginTop: "10px", marginLeft: "45px", fontSize: "20px"}}>
                     Change Password
                 </Button>
             </Form>

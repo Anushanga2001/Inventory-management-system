@@ -106,7 +106,7 @@ export default function Updateprofile() {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button variant="dark" type="submit" className='btn' style={{backgroundColor: "white", color: "black"}}>
+                <Button variant="dark" type="submit" className='btn' style={{backgroundColor: "black", color: "yellow", width: "200px"}}>
                     <b>Submit</b>
                 </Button>
             </Form>

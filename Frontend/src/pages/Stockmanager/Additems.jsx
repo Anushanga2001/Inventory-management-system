@@ -27,7 +27,7 @@ export default function Additems() {
 
   const [formData, setFormData] = useState({
     itemNo: '',
-    itemName: '', // Added itemName state
+    itemName: '', 
     unitPrice: '',
     quantity: '',
     expireDate: '',
@@ -39,7 +39,14 @@ export default function Additems() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    let validatedValue = value;
+
+    // Ensure that the values for unitPrice, quantity, and noOfQuantity are not negative
+    if (name === 'unitPrice' || name === 'quantity' || name === 'noOfQuantity') {
+      validatedValue = Math.max(0, value);
+    }
+
+    setFormData({ ...formData, [name]: validatedValue });
   };
 
   const handleImageChange = (e) => {
@@ -62,7 +69,7 @@ export default function Additems() {
         const data = response.data;
 
         if (data.itemName === undefined) {
-            alert('There is no registed item with this item number.');
+            alert('There is no registered item with this item number.');
         } else {
             setFormData({
                 ...formData,
@@ -72,13 +79,17 @@ export default function Additems() {
     } catch (error) {
         console.error('Error fetching item name:', error);
     }
-};
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isFormValid()) {
+      toast.error('Please ensure all values are greater than zero.');
+      return;
+    }
+
     try {
-      const formDataToSend = new FormData(); // Use the native FormData object
+      const formDataToSend = new FormData(); 
       formDataToSend.append('itemNo', formData.itemNo);
       formDataToSend.append('itemName', formData.itemName);
       formDataToSend.append('unitPrice', formData.unitPrice);
@@ -87,7 +98,8 @@ export default function Additems() {
       formDataToSend.append('noOfQuantity', formData.noOfQuantity);
       formDataToSend.append('itemImage', formData.itemImage);
 
-      const responsePromise = axios.post('http://localhost:5000/add_item00', formDataToSend); // Do not set the Content-Type header manually
+      const responsePromise = axios.post('http://localhost:5000/add_item00', formDataToSend); 
+      notify(responsePromise);
       setFormData({
         itemNo: '',
         itemName: '',
@@ -97,9 +109,9 @@ export default function Additems() {
         noOfQuantity: '',
         itemImage: ''
       });
+      setItemImageUrl('');
     } catch (error) {
       console.error('Error adding item:', error);
-      notify(error, 'Something went wrong...');
     }
   };
 
@@ -113,11 +125,14 @@ export default function Additems() {
       noOfQuantity: '',
       itemImage: ''
     });
+    setItemImageUrl('');
   };
 
   const isFormValid = () => {
     const { itemNo, itemName, unitPrice, quantity, expireDate, noOfQuantity } = formData;
-    return itemNo && itemName && unitPrice && quantity && expireDate && noOfQuantity;
+    return (
+      itemNo && itemName && unitPrice > 0 && quantity > 0 && expireDate && noOfQuantity > 0
+    );
   };
 
   return (
@@ -140,7 +155,7 @@ export default function Additems() {
               name="itemNo"
               value={formData.itemNo}
               onChange={handleChange}
-              onBlur={fetchItemName} // Fetch itemName onBlur
+              onBlur={fetchItemName} 
               required
             />
             </div>
@@ -161,7 +176,7 @@ export default function Additems() {
             <label>Unit Price  </label>
             <input
               key="unitPrice"
-              type="text"
+              type="number"
               placeholder="Unit Price"
               className='input02'
               name="unitPrice"
@@ -224,7 +239,7 @@ export default function Additems() {
             </div>
             <div className='btn22' style={{ marginTop: '-20px' }}>
               <center>
-                <Button variant="success" type="submit" style={{ width: '150px' }} onClick={() => { handleSubmit(); notify(); !isFormValid(); }}>CONFIRM</Button>
+                <Button variant="success" type="submit" style={{ width: '150px' }} onClick={notify}>CONFIRM</Button>
                 <Button variant="danger" type="button" onClick={resetForm} style={{ width: '150px' }}>CANCEL</Button>
               </center>
             </div>

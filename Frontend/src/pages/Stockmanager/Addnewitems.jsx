@@ -42,14 +42,18 @@ export default function Addnewitems() {
     if (name === "itemName") {
       validatedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
     }
-  
+
     if (name === "itemName" && value.includes("-")) {
       validatedValue = validatedValue.replace(/\s-/g, '-');
+    }
+
+    // Ensure that the values for unitPrice, quantity, and noOfQuantity are not negative
+    if (name === 'unitPrice' || name === 'quantity' || name === 'noOfQuantity') {
+      validatedValue = Math.max(0, value);
     }
   
     setFormData({ ...formData, [name]: validatedValue });
   };
-
 
   const checkExistingItem = async (itemName, formData) => {
     try {
@@ -64,8 +68,26 @@ export default function Addnewitems() {
     }
   };  
 
+  const validateFormData = () => {
+    if (
+      formData.unitPrice <= 0 ||
+      formData.quantity <= 0 ||
+      formData.noOfQuantity <= 0
+    ) {
+      setError('Values for Unit Price, Quantity, and Threshold value must be greater than zero.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous errors
+
+    if (!validateFormData()) {
+      return;
+    }
+
     try {
       const itemExists = await checkExistingItem(formData.itemName, formData);
   
@@ -106,6 +128,7 @@ export default function Addnewitems() {
       noOfQuantity: ''
     });
     setSelectedFile(null); // Reset selected file state on cancel
+    setError(''); // Clear previous errors
   };
 
   return (
@@ -118,86 +141,86 @@ export default function Addnewitems() {
         <h1 className='topic003'><b>ADD  NEW  ITEM</b></h1>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
-        <div className='lab1'>
-          <label htmlFor="itemName">Item Name </label>
-          <input
-            type="text"
-            id="itemName"
-            name="itemName"
-            className='input01'
-            value={formData.itemName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='lab1'>
-          <label htmlFor="unitPrice">Unit Price </label>
-          <input
-            type="number"
-            id="unitPrice"
-            name="unitPrice"
-            className='input01'
-            value={formData.unitPrice}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='lab1'>
-          <label htmlFor="quantity">Quantity </label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            className='input01'
-            value={formData.quantity}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='lab1'>
-          <label htmlFor="expireDate">Expire Date </label>
-          <input
-            type="date"
-            id="expireDate"
-            name="expireDate"
-            className='input01'
-            value={formData.expireDate}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='lab1'>
-          <label htmlFor="noOfQuantity">Threshold value </label>
-          <input
-            type="number"
-            id="noOfQuantity"
-            placeholder='Enter quantity'
-            name="noOfQuantity"
-            className='input01'
-            value={formData.noOfQuantity}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='lab1'>
-          <label htmlFor="itemImage">Item Image </label>
+          <div className='lab1'>
+            <label htmlFor="itemName">Item Name </label>
             <input
-              type="file"
-              id="itemImage"
-              name="itemImage"
-              accept="image/*"
+              type="text"
+              id="itemName"
+              name="itemName"
               className='input01'
-              onChange={handleFileChange}
+              value={formData.itemName}
+              onChange={handleChange}
               required
             />
-        </div>
+          </div>
+          <div className='lab1'>
+            <label htmlFor="unitPrice">Unit Price </label>
+            <input
+              type="number"
+              id="unitPrice"
+              name="unitPrice"
+              className='input01'
+              value={formData.unitPrice}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className='lab1'>
+            <label htmlFor="quantity">Quantity </label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              className='input01'
+              value={formData.quantity}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className='lab1'>
+            <label htmlFor="expireDate">Expire Date </label>
+            <input
+              type="date"
+              id="expireDate"
+              name="expireDate"
+              className='input01'
+              value={formData.expireDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className='lab1'>
+            <label htmlFor="noOfQuantity">Threshold value </label>
+            <input
+              type="number"
+              id="noOfQuantity"
+              placeholder='Enter quantity'
+              name="noOfQuantity"
+              className='input01'
+              value={formData.noOfQuantity}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className='lab1'>
+            <label htmlFor="itemImage">Item Image </label>
+              <input
+                type="file"
+                id="itemImage"
+                name="itemImage"
+                accept="image/*"
+                className='input01'
+                onChange={handleFileChange}
+                required
+              />
+          </div>
           <div className='btn21'>
             <center>
               <Button variant="success" type='submit' style={{ width: '150px' }} >ADD</Button>
               <Button variant="danger" type="button" onClick={resetForm} style={{ width: '150px' }}>CANCEL</Button>
             </center>
           </div>
-      </form>
+        </form>
       </div>
       <ToastContainer />
     </div>

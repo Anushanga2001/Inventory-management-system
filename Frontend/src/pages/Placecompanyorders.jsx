@@ -45,10 +45,14 @@ export default function Placecompanyorders() {
 
   const handleQuantityChange = (index, event) => {
     const newItems = [...items];
-    newItems[index].quantity = event.target.value;
+    const value = Math.max(0, event.target.value); // Ensure non-negative values
+    if (value === 0 && event.target.value !== '') {
+      toast.error("Quantity must be greater than 0.");
+    }
+    newItems[index].quantity = value;
     setItems(newItems);
   };
-
+  
   const handleCancel = () => {
     const clearedItems = items.map(item => ({ ...item, quantity: '' }));
     setItems(clearedItems);
