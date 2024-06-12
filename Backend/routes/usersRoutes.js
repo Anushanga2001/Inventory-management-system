@@ -59,4 +59,7 @@ router.get('/get_reports5', itemsController7.getreports5)
 // return handling
 router.post('/add_return', itemsController8.addReturn);
 
+// Get reportss
+router.get('/get_salesreport', itemsController5.getSalesReport);
+
 module.exports = router;

@@ -3,7 +3,7 @@ import './Navigationbar1.css';
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faCalendarAlt, faShoppingCart, faBuilding, faChartBar, faSignOutAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faCalendarAlt, faShoppingCart, faBuilding, faChartBar, faSignOutAlt, faEdit,faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 export default function Navigationbar1() {
   const navigate = useNavigate();
@@ -70,11 +70,20 @@ export default function Navigationbar1() {
           </li>
           <li className="nav-item09">
             <Link
+              to="/owner/Filterreport"
+              className={`nav-link ${location.pathname === "/owner/Filterreport" ? "active" : ""
+                }`}
+            >
+              <FontAwesomeIcon icon={faChartBar} /> Report
+            </Link>
+          </li>
+          <li className="nav-item09">
+            <Link
               to="/owner/Reports"
               className={`nav-link ${location.pathname === "/owner/Reports" ? "active" : ""
                 }`}
             >
-              <FontAwesomeIcon icon={faChartBar} /> DashBoard
+              <FontAwesomeIcon icon={faChartLine} /> DashBoard
             </Link>
           </li>
         </ul>

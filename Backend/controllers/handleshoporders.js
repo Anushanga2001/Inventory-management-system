@@ -122,3 +122,45 @@ exports.getshopOrdersByOrderNo = (req, res) => {
   });
 };
 
+// get report data
+exports.getSalesReport = (req, res) => {
+  const { orderNo, itemNo } = req.query;
+
+  let sql = `SELECT shop_orders_include.*, DATE(shop_orders1.orderDate) as orderDate 
+    FROM shop_orders_include
+    RIGHT JOIN shop_orders1 ON shop_orders_include.orderNo = shop_orders1.orderNo`;
+  const queryParams = [];
+
+  if (orderNo || itemNo) {
+    sql += " WHERE";
+    if (orderNo) {
+      sql += " shop_orders_include.orderNo = ?";
+      queryParams.push(orderNo);
+    }
+    if (itemNo) {
+      if (orderNo) sql += " AND";
+      sql += " shop_orders_include.itemNo = ?";
+      queryParams.push(itemNo);
+    }
+  }
+
+  db.query(sql, queryParams, (err, result) => {
+    if (err) {
+      console.error('Error fetching orders:', err);
+      res.status(500).json({ error: 'Error fetching orders' });
+      return;
+    }
+
+    // Format orderDate to display only the date part
+    result.forEach((row) => {
+      row.orderDate = row.orderDate.toISOString().split('T')[0];
+    });
+
+    res.json(result);
+  });
+};
+
+
+
+
+

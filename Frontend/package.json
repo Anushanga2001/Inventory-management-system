@@ -29,7 +29,8 @@
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-router-dom": "^6.22.3",
     "react-toastify": "^10.0.5",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

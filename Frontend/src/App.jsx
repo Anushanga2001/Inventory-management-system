@@ -15,6 +15,7 @@ import Addusers from './pages/Owner/Addusers';
 import Companyorders from './pages/Companyorders';
 import Reports from './pages/Owner/Reports';
 import Register from './pages/Owner/Register';
+import Filterreport from './pages/Filterreport';
 
 // 2nd navigation bar pages
 import Additems from './pages/Stockmanager/Additems';
@@ -71,6 +72,7 @@ function App() {
             <Route path="Reports" element={<Reports />} />
             <Route path="Register" element={<Register />} />
             <Route path="ed/:userID" element={<Editc />} />
+            <Route path="Filterreport" element={<Filterreport />} />
 
           </Route>
 
