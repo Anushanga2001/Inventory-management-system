@@ -85,7 +85,7 @@ exports.addShopOrders = (req, res) => {
 
 
 exports.getShopOrders = (req, res) => {
-  const sql = 'SELECT * FROM shop_orders1';
+  const sql = 'SELECT * FROM shop_orders1 ORDER BY orderNo DESC';
   db.query(sql, (err, result) => {
     if (err) {
       console.error('Error fetching orders:', err);

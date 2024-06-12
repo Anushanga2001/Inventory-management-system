@@ -33,7 +33,7 @@ function Dynamiccompanyorders() {
 
   return (
     <div>
-      <center><h2 className='fr1'>Company Order Details</h2></center>
+      <center><h2 className='fr1'>Company Order</h2></center>
       <div className='companyorders_no' style={{ marginLeft: "70px" }}>
         <p>Order Number : <b>{orderno}</b></p>
         <p>Order Date : <b>{orderDate}</b></p>
