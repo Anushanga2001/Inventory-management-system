@@ -232,7 +232,7 @@ export default function Additems() {
                   className='input02'
                   name="itemImage"
                   onChange={handleImageChange}
-                  style={{ marginLeft: '-170px' }}
+                  style={{ marginLeft: '-150px' }}
                 />
                 {itemImageUrl && <img src={itemImageUrl} alt="Selected" className='preview-image' />}
               </div>

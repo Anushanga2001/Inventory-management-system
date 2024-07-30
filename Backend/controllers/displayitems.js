@@ -7,3 +7,11 @@ exports.getdisplay = (req, res) => {
       return res.json(data);
     });
   };  
+
+// exports.editdisplay1 = (req, res) => {
+//     const sql = 'UPDATE unitPrice FROM manufacture_company_display';
+//     db.query(sql, (err, data) => {
+//       if (err) return res.json(err);
+//       return res.json(data);
+//     });
+//   };

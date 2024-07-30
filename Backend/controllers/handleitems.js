@@ -194,3 +194,17 @@ exports.updateItem = (req, res) => {
     res.json({ message: 'Item updated successfully' });
   });
 };
+
+// declarin a function for get detasils
+exports.getItemDetails = (req, res) => {
+  const { itemNo } = req.params;
+  const sql = 'SELECT * FROM items01 WHERE itemNo = ?';
+  db.query(sql, [itemNo], (err, result) => {
+    if (err) {
+      console.error('Error fetching items:', err);
+      res.status(500).json({ error: 'Error fetching items' });
+      return;
+    }
+    res.json(result);
+  });
+};

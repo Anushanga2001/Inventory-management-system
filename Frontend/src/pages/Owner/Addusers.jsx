@@ -2,23 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './Addusers.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import {useNavigate} from 'react-router-dom'
 
 export default function Addusers() {
   const [users, setUsers] = useState([]);
 
+  // const handleUpdate = async (userID) => {
+  //   try {
+  //     console.log(userID);
+  //     await axios.put(`http://localhost:5000/update_users/${userID}`);
+  //     setUsers(users.filter(user => user.userID !== userID));
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
+
   const handleDelete = async (userID) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete?");
-    if (confirmDelete) {
-        try {
-            console.log(userID);
-            await axios.delete(`http://localhost:5000/delete_users/${userID}`);     
-            setUsers(users.filter(user => user.userID !== userID));
-        } catch (e) {
-            console.log(e)
-        }
+    try {
+      console.log(userID);
+      await axios.delete(`http://localhost:5000/delete_users/${userID}`);
+      setUsers(users.filter(user => user.userID !== userID));
+    } catch (e) {
+      console.error(e);
     }
-}
+  }
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,7 +35,6 @@ export default function Addusers() {
         console.log(error);
       }
     };
-
     fetchUsers();
   }, []);
 
@@ -49,7 +54,7 @@ export default function Addusers() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.filter(user => user.status !== 'invalid').map(user => (
             <tr key={user.userID}>
               <td>{user.userID}</td>
               <td>{user.firstName}</td>
@@ -60,7 +65,8 @@ export default function Addusers() {
               <td>
                 <div className="action-buttons" style={{ justifyContent: 'center' }}>
                   <Link to={`/owner/ed/${user.userID}`} className="action-button edit">Edit</Link>
-                  <Link className="action-button delete" onClick={() => handleDelete(user.userID)}>Delete</Link>
+                  {/* <button style={{backgroundColor: "black", color: 'white', width: '90px', borderRadius: '5px'}} onClick={() => handleUpdate(user.userID)}>Remove</button> */}
+                  <button style={{backgroundColor: "black", color: 'white', width: '90px', borderRadius: '5px'}} onClick={() => handleDelete(user.userID)}>Delete</button>
                 </div>
               </td>
             </tr>

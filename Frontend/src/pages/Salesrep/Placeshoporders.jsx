@@ -84,16 +84,16 @@ export default function Placeshoporders() {
       for (let i = itemIndex - 1; i >= 0; i--) {
         if (updatedItems[i].itemNo === itemNo && updatedItems[i].enterquantity > 0) {
           if (updatedItems[itemIndex].enterquantity === 0) {
-            updatedItems[i].enterquantity = 0; // Reset previous batch quantity
+            updatedItems[i].enterquantity = 0; 
           }
         }
       }
 
       setItems(updatedItems);
+
     }
   };
   
-
   const handleConfirmClick = async () => {
     if (!userID) {
       toast.error("User ID is missing. Please log in again.");

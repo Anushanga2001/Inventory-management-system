@@ -17,17 +17,17 @@ export default function Map() {
         (err) => {
           console.error(err);
           setPosition([7.2536, 80.3407]); // Default to Kegalle, Sri Lanka on error
-          setLoading(false); // Even on error, set loading to false
+          setLoading(false); 
         }
       );
     } else {
       setPosition([7.2536, 80.3407]); // Default to Kegalle, Sri Lanka if geolocation is not supported
-      setLoading(false); // Geolocation not supported, set loading to false
+      setLoading(false); 
     }
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Loading message or spinner
+    return <div>Loading...</div>; 
   }
 
   return (

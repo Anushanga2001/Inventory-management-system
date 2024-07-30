@@ -105,7 +105,26 @@ exports.updateUsers = (req, res) => {
   });
 };
 
-exports.deleteUser = (req, res) => {
+exports.updateUser1 = (req, res) => {
+  const sql = 'UPDATE users01 SET status = ? WHERE userID = ?';
+  const { userID } = req.params;
+  const newStatus = 'invalid'; 
+
+  db.query(sql, [newStatus, userID], (err, result) => {
+    if (err) {
+      console.error('Error updating user:', err);
+      res.status(500).json({ error: 'Error updating user' });
+      return;
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ message: 'User updated successfully' });
+  });
+};
+
+exports.deleteUsers = (req, res) => {
   const sql = 'DELETE FROM users01 WHERE userID = ?';
   const { userID } = req.params;
 
@@ -115,7 +134,10 @@ exports.deleteUser = (req, res) => {
       res.status(500).json({ error: 'Error deleting user' });
       return;
     }
-    res.json({ message: 'User deleted successfully' }); // Respond with a success message
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json({ message: 'User deleted successfully' });
   });
 };
-

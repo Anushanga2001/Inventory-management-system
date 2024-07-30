@@ -18,7 +18,8 @@ router.put('/update_users/:userID', usersController.updateUsers);
 router.put('/update_userss/:userID', usersController.updateUserss);
 
 router.put('/update_user/:userId', usersController.updateUser);
-router.delete('/delete_users/:userID', usersController.deleteUser);
+// router.put('/update_users/:userID', usersController.updateUser1);
+router.delete('/delete_users/:userID', usersController.deleteUsers);
 
 router.post('/signin', usersController1.signIn);
 
@@ -46,6 +47,7 @@ router.get('/get_shoporders/:orderNo', itemsController5.getshopOrderByOrderNo)
 router.get('/get_shoporder_details/:orderNo', itemsController5.getshopOrdersByOrderNo)
 
 router.get('/display_items', itemsController4.getdisplay)
+// router.put('/display_items1', itemsController4.editdisplay1)
 router.post('/add_notifications', itemsController6.addnotifications)
 router.delete('/delete_notification/:itemNo/:batchNo', itemsController6.deletenotifications)
 

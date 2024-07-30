@@ -30,7 +30,7 @@ const TotalSales = () => {
     <div style={{ backgroundColor: "rgba(51, 51, 51, 0.1)", color: "black",borderRadius: "20px",marginLeft: "50px",
      marginTop: "5px", height: "250px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
       <h3>Last 30 Days Total Sales</h3>
-      <p style={{ fontSize: "25px" }}><b>{totalSalesValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p><hr/>
+      <p style={{ fontSize: "25px" }}> <b>{totalSalesValue !== null ? totalSalesValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</b></p><hr/>
       <h3>Last 30 Days Profit From the Sales</h3>
       <p style={{ fontSize: "25px" }}><b>{profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p>
     </div>
