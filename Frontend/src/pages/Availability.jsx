@@ -50,7 +50,7 @@ export default function Availability() {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-  };
+  }
 
   return (
     <div className='Availability1'>
