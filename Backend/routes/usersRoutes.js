@@ -17,6 +17,7 @@ router.get('/get_user/:userID', usersController.getUser);
 router.put('/update_users/:userID', usersController.updateUsers);
 router.put('/update_userss/:userID', usersController.updateUserss);
 
+router.get('/get_itemss_forecast', itemsController2.getItemsForForecasting);
 router.put('/update_user/:userId', usersController.updateUser);
 // router.put('/update_users/:userID', usersController.updateUser1);
 router.delete('/delete_users/:userID', usersController.deleteUsers);

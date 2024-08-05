@@ -59,13 +59,23 @@ export default function Navigationbar1() {
               <FontAwesomeIcon icon={faShoppingCart} /> ShopOrders
             </Link>
           </li>
-          <li className="nav-item09">
+          {/* <li className="nav-item09">
             <Link
               to="/owner/Companyorders"
               className={`nav-link ${location.pathname === "/owner/Companyorders" ? "active" : ""
                 }`}
             >
               <FontAwesomeIcon icon={faBuilding} /> CompanyOrders
+            </Link>
+          </li> */}
+          <li className="nav-item09">
+            <Link
+              to="/owner/Foorecasting"
+              className={`nav-link ${location.pathname === "/owner/Foorecasting" ? "active" : ""
+                }`}
+            >
+              {/* give suitable icon for Forecasting */}
+              <FontAwesomeIcon icon={faChartLine} /> Forecasting
             </Link>
           </li>
           <li className="nav-item09">

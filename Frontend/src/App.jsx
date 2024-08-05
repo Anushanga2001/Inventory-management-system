@@ -16,6 +16,7 @@ import Companyorders from './pages/Companyorders';
 import Reports from './pages/Owner/Reports';
 import Register from './pages/Owner/Register';
 import Filterreport from './pages/Filterreport';
+import Foorecasting from './pages/Owner/Foorecasting';
 
 // 2nd navigation bar pages
 import Additems from './pages/Stockmanager/Additems';
@@ -67,7 +68,8 @@ function App() {
             <Route path="Shoporders" element={<Shoporders2 />} />
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
             <Route path="add/:orderno" element={<Dynamiccompanyorders />} />
-            <Route path="Placecompanyorders" element={<Placecompanyorders />} />
+            {/* <Route path="Placecompanyorders" element={<Placecompanyorders />} /> */}
+            <Route path="Foorecasting" element={<Foorecasting />} />
             <Route path="Companyorders" element={<Companyorders />} />
             <Route path="Reports" element={<Reports />} />
             <Route path="Register" element={<Register />} />
