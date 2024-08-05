@@ -15,6 +15,7 @@ export default function Forecasting() {
     };
     fetchItems();
   }, []);
+  // get use effect and pass the value
 
   return (
     <div>

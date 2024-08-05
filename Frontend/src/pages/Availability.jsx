@@ -21,6 +21,7 @@ export default function Availability() {
         console.log(error);
       }
     };
+    // get use effect and pass the value
 
     fetchItems();
   }, []);

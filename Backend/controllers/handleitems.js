@@ -215,6 +215,7 @@ exports.getItemsForForecasting = (req, res) => {
                FROM shop_orders_include sii
                JOIN shop_orders1 so ON sii.orderNo = so.orderNo
                WHERE so.orderDate BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()`;
+              // Query for the get values from the table 
 
   db.query(sql, (err, result) => {
     if (err) {
