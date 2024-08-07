@@ -32,7 +32,7 @@ export default function Navigationbar3() {
       </div>
       <Nav defaultActiveKey="/home3" className="flex-column3 nav-menu">
         <ul className='menu-list'>
-          <li className="nav-item1">
+          <li className="nav-item2">
             <Link
               to="/salesrep/Placeshoporders"
               className={`nav-link ${location.pathname === "/salesrep/Placeshoporders" ? "active" : ""
@@ -41,7 +41,7 @@ export default function Navigationbar3() {
               <FontAwesomeIcon icon={faCartPlus} /> Place orders
             </Link>
           </li>
-          <li className="nav-item">
+          <li className="nav-item2">
             <Link
               to="/salesrep/Shoporders"
               className={`nav-link ${location.pathname === "/salesrep/Shoporders" ? "active" : ""
@@ -65,6 +65,15 @@ export default function Navigationbar3() {
               className={`nav-link ${location.pathname === "/salesrep/Returnpage" ? "active" : ""}`}
             >
               <FontAwesomeIcon icon={faUndo} /> Returns
+            </Link>
+          </li>
+          {/* Add more menu items as needed */}
+          <li className="nav-item2">
+            <Link
+              to="/salesrep/PowerBI"
+              className={`nav-link ${location.pathname === "/salesrep/PowerBI" ? "active" : ""}`}
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} /> Power BI
             </Link>
           </li>
         </ul>

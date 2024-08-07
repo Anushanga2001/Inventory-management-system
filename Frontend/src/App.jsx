@@ -30,6 +30,7 @@ import Editc1 from './pages/Editc1';
 import Placeshoporders from './pages/Salesrep/Placeshoporders';
 import Map from './pages/Salesrep/Map';
 import Returnpage from './pages/Returninclude';
+import PowerBI from './pages/Salesrep/PowerBI';
 
 // common pages
 import Edit from './pages/Edit';
@@ -98,6 +99,7 @@ function App() {
             <Route path=":orderNo" element={<DynamicShoporders />} /> 
             <Route path="Map" element={<Map />} />
             <Route path="Returnpage" element={<Returnpage />} />
+            <Route path='PowerBI' element={<PowerBI />} />
           </Route>
         </Routes>
       </div>
