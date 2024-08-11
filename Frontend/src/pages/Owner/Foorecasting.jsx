@@ -15,7 +15,7 @@ export default function Forecasting() {
     };
     fetchItems();
   }, []);
-  // get use effect and pass the value
+
 
   return (
     <div>
@@ -28,9 +28,15 @@ export default function Forecasting() {
       }}>
         <center>Forecasting</center>
       </h1>
-      <div className='forecasting' style={{ justifyContent: 'center', textAlign: 'center', width: '300px',padding: '20px',
-        fontSize: '20px', height: '100px', background: 'rgba(0, 0, 0, 0.8)', color: 'yellow', marginLeft: '650px', marginTop: '350px' }}>
-        <p>{totalSales !== null ? `Total Sales: ${totalSales/3}` : 'Loading...'}</p>
+      <div  style={{backgroundImage: 'url("/src/assets/happy-man (1).png")', height: '100vh', weight: '100%', 
+            backgroundPosition: 'center', backgroundRepeat: 'no-repeat', marginLeft: '500px', marginTop: '-50px',	
+            display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
+
+        <div className='forecasting' style={{ justifyContent: 'center', textAlign: 'center', width: '300px',padding: '20px',
+          fontSize: '20px', height: '100px', background: 'rgba(0, 0, 0, 0.8)', color: 'yellow', marginLeft: '-750px', marginTop: '-200px' }}>
+          <p>{totalSales !== null ? `Total Sales: ${totalSales/3}` : 'Loading...'}</p>
+        </div>
+
       </div>
     </div>
   );

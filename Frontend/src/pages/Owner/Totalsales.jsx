@@ -12,7 +12,7 @@ const TotalSales = () => {
       .then(response => {
         const salesValue = response.data[0].totalSalesValue;
         setTotalSalesValue(salesValue);
-        const profitValue = salesValue * 0.15; // Calculate 15% of total sales
+        const profitValue = salesValue * 0.15; 
         setProfit(profitValue);
         setLoading(false);
       })

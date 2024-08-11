@@ -211,11 +211,9 @@ exports.getItemDetails = (req, res) => {
 
 // to get the items for the forecasting
 exports.getItemsForForecasting = (req, res) => {
-  const sql = `SELECT SUM(sii.unitPrice * sii.quantity) AS totalSales
-               FROM shop_orders_include sii
-               JOIN shop_orders1 so ON sii.orderNo = so.orderNo
-               WHERE so.orderDate BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE()`;
-              // Query for the get values from the table 
+  const sql = `SELECT ROUND(SUM(sii.unitPrice * sii.quantity), 2) AS totalSales
+FROM shop_orders_include sii JOIN shop_orders1 so ON sii.orderNo = so.orderNo
+WHERE so.orderDate BETWEEN DATE_SUB(CURDATE(), INTERVAL 3 MONTH) AND CURDATE();`;
 
   db.query(sql, (err, result) => {
     if (err) {
@@ -224,7 +222,6 @@ exports.getItemsForForecasting = (req, res) => {
       return;
     }
 
-    // Assuming result is an array and we want the value of totalSales from the first element
     const totalSales = result.length > 0 ? result[0].totalSales : 0;
     
     res.json({ totalSales });
