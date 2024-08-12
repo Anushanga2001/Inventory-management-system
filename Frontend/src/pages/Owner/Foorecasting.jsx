@@ -16,6 +16,9 @@ export default function Forecasting() {
     fetchItems();
   }, []);
 
+  const formattedTotalSales = totalSales !== null 
+    ? (totalSales / 3).toFixed(2) 
+    : 'Loading...';
 
   return (
     <div>
@@ -30,13 +33,13 @@ export default function Forecasting() {
       </h1>
       <div  style={{backgroundImage: 'url("/src/assets/happy-man (1).png")', height: '100vh', weight: '100%', 
             backgroundPosition: 'center', backgroundRepeat: 'no-repeat', marginLeft: '500px', marginTop: '-50px',	
-            display: 'flex',alignItems: 'center',justifyContent: 'center',}}>
+            display: 'flex',alignItems: 'center',justifyContent: 'center', flexDirection: 'column'}}>
 
-        <div className='forecasting' style={{ justifyContent: 'center', textAlign: 'center', width: '300px',padding: '20px',
-          fontSize: '20px', height: '100px', background: 'rgba(0, 0, 0, 0.8)', color: 'yellow', marginLeft: '-750px', marginTop: '-200px' }}>
-          <p>{totalSales !== null ? `Total Sales: ${totalSales/3}` : 'Loading...'}</p>
+        <h1 style={{fontSize: '50px', color: 'blue', marginLeft: '-1000px', marginTop: '-200px'}}>Next month sales</h1>
+        <div className='forecasting' style={{ justifyContent: 'center', textAlign: 'center', width: '500px',padding: '20px',paddingTop: '30px',
+          fontSize: '40px', height: '200px', background: 'rgba(0, 0, 0, 0.7)', color: 'yellow', marginLeft: '-850px', marginTop: '50px' }}>
+           <p>Total Sales<br/> RS: {formattedTotalSales}</p>
         </div>
-
       </div>
     </div>
   );

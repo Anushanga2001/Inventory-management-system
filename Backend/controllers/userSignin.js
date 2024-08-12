@@ -16,8 +16,9 @@ exports.signIn = (req, res) => {
         if (result.length === 0) {
             // User not found or incorrect password
             res.status(401).json({ message: 'Invalid username or password' });
-        } else {
-            // User authenticated successfully
+        }
+        else {
+
             // Extract user's job position from the result
             const userJobPosition = result[0].jobPosition;
             const userFirstName = result[0].firstName;
@@ -27,7 +28,7 @@ exports.signIn = (req, res) => {
             const token = jwt.sign(
                 { userName: userName, jobPosition: userJobPosition}, 
                 'your_secret_key',
-                { expiresIn: '30m' } // Token will expire in 30 minutes
+                { expiresIn: '30m' } 
             );
               
             // Send success response with user's job position and token

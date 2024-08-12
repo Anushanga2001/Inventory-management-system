@@ -20,15 +20,16 @@ const Signin = () => {
       });
 
       // Extract the token from the response
-      const token = response.data.token;
-      // Store the token in local storage
-      localStorage.setItem('token', token);
-      localStorage.setItem('jobPosition', response.data.jobPosition);
-      localStorage.setItem('firstName', response.data.firstName);
-      localStorage.setItem('userID', response.data.userID);
+      const { token, jobPosition, firstName, userID } = response.data;
 
-      // Navigate to appropriate page based on job position
-      switch (response.data.jobPosition) {
+      // Store the token and other user data in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem('jobPosition', jobPosition);
+      localStorage.setItem('firstName', firstName);
+      localStorage.setItem('userID', userID);
+
+      // Navigate to the appropriate page based on job position
+      switch (jobPosition) {
         case 'owner':
           navigate('/owner/Addusers');
           break;
@@ -39,11 +40,11 @@ const Signin = () => {
           navigate('/salesrep/Placeshoporders');
           break;
         default:
-          // Handle other job positions or scenarios
+          navigate('/'); // Redirect to default or home if jobPosition does not match
           break;
       }
     } catch (error) {
-      console.error('Error authenticating user:', error.response.data.error);
+      console.error('Error authenticating user:', error.response?.data?.error || error.message);
       setErrorMessage('Invalid username or password');
     }
   };
@@ -55,35 +56,35 @@ const Signin = () => {
       </div>
       <div className='right-component'>
         <div className='signin-container'>
-        <h2 style={{ fontSize: '80px', color: 'black',fontFamily: 'cursive', fontStyle: 'bold', paddingTop: '150px'}}>Sign In</h2>
-        <form onSubmit={handleSubmit}>
-          <div className='form-group' style={{ marginTop: '50px'}}>
-            <label style={{ fontSize: '25px',fontFamily: 'cursive', marginTop: '50px' }}>Username</label>
-            <input
-              type="text"
-              style={{ fontSize: '23px', justifyContent: 'center', textAlign: 'center', width: '50%', marginTop: '20px', border: '2px solid black'}}
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <label style={{ fontSize: '25px',fontFamily: 'cursive', marginTop: '50px' }}>Password</label>
-            <input
-              type="password"
-              style={{ fontSize: '23px', justifyContent: 'center', textAlign: 'center', width: '50%' , marginTop: '20px', border: '2px solid black'}}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <Button variant="dark" type="submit" style={{ fontSize: '25px',fontFamily: 'cursive', marginTop: '50px', width: '50%' }}>Sign In</Button>
-          </div>
-          {errorMessage && <p className="error-message" style={{ color: 'white', fontSize: '25px', marginTop: '35px' }}>{errorMessage}</p>}
-        </form>
+          <h2 style={{ fontSize: '80px', color: 'black', fontFamily: 'cursive', fontStyle: 'bold', paddingTop: '150px' }}>Sign In</h2>
+          <form onSubmit={handleSubmit}>
+            <div className='form-group' style={{ marginTop: '50px' }}>
+              <label style={{ fontSize: '25px', fontFamily: 'cursive', marginTop: '50px' }}>Username</label>
+              <input
+                type="text"
+                style={{ fontSize: '23px', justifyContent: 'center', textAlign: 'center', width: '50%', marginTop: '20px', border: '2px solid black' }}
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label style={{ fontSize: '25px', fontFamily: 'cursive', marginTop: '50px' }}>Password</label>
+              <input
+                type="password"
+                style={{ fontSize: '23px', justifyContent: 'center', textAlign: 'center', width: '50%', marginTop: '20px', border: '2px solid black' }}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <Button variant="dark" type="submit" style={{ fontSize: '25px', fontFamily: 'cursive', marginTop: '50px', width: '50%' }}>Sign In</Button>
+            </div>
+            {errorMessage && <p className="error-message" style={{ color: 'white', fontSize: '25px', marginTop: '35px' }}>{errorMessage}</p>}
+          </form>
         </div>
-        </div>
+      </div>
     </div>
   );
 };
