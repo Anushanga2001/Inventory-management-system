@@ -49,5 +49,3 @@ exports.addnotifications = (req, res) => {
     res.status(200).json({ message: 'Notification deleted successfully' });
   });
   };
-  
-

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/95b157b4-957c-457f-905e-463b1092bfa9/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Radeepa",
+    "appService.deploySubpath": "."
+}
