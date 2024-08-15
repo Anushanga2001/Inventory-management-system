@@ -16,6 +16,7 @@ export default function Forecasting() {
     fetchItems();
   }, []);
 
+
   const formattedTotalSales = totalSales !== null 
     ? (totalSales / 3).toFixed(2) 
     : 'Loading...';
