@@ -22,6 +22,7 @@ export default function Forecasting() {
     : 'Loading...';
 
   return (
+    // This is the page for forecasing the next month sales
     <div>
       <h1 style={{
         paddingTop: "25px",
