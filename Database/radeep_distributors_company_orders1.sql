@@ -1,0 +1,52 @@
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: localhost    Database: radeep_distributors
+-- ------------------------------------------------------
+-- Server version	8.0.37
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `company_orders1`
+--
+
+DROP TABLE IF EXISTS `company_orders1`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `company_orders1` (
+  `orderNo` int NOT NULL AUTO_INCREMENT,
+  `orderDate` date NOT NULL,
+  `orderTime` time NOT NULL,
+  PRIMARY KEY (`orderNo`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `company_orders1`
+--
+
+LOCK TABLES `company_orders1` WRITE;
+/*!40000 ALTER TABLE `company_orders1` DISABLE KEYS */;
+INSERT INTO `company_orders1` VALUES (41,'2024-06-04','00:22:35'),(42,'2024-06-04','00:23:09'),(43,'2024-06-04','00:34:17'),(44,'2024-06-05','13:26:04'),(45,'2024-06-05','13:27:06'),(46,'2024-06-05','13:30:53'),(47,'2024-06-05','15:39:57'),(48,'2024-06-06','20:29:32'),(49,'2024-06-06','01:27:27'),(50,'2024-06-06','01:28:44'),(51,'2024-06-07','01:02:19'),(52,'2024-06-12','09:27:08'),(53,'2024-06-12','15:23:41'),(54,'2024-06-12','18:11:37'),(55,'2024-06-12','18:31:24'),(56,'2024-06-12','19:24:22'),(57,'2024-06-12','22:07:50'),(58,'2024-06-12','22:47:05'),(59,'2024-06-13','12:15:20'),(60,'2024-06-13','18:23:45'),(61,'2024-06-14','13:56:54'),(62,'2024-08-27','17:16:59');
+/*!40000 ALTER TABLE `company_orders1` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-07-05 10:23:43
